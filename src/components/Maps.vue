@@ -36,7 +36,7 @@ export default {
       target: 'map',
       view: new View({
         center: POI.faycelles,
-        zoom: 12
+        zoom: store.getters.zoom
       })
     })
     map.addControl(new FullScreen())
