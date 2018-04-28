@@ -18,7 +18,6 @@ const dragAndDropInteraction = new DragAndDrop({
   ]
 })
 dragAndDropInteraction.on('addfeatures', function(event) {
-  console.dir(event.target)
   var title = 'new layer'
   if (event.file) {
     title = event.file.name
