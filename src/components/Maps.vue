@@ -5,13 +5,17 @@
 </template>
 <script>
 import Map from 'ol/map'
-import POI from '@/assets/poi'
 import View from 'ol/view'
+import proj from 'ol/proj'
 import Scaleline from 'ol/control/scaleline'
 import SearchNominatim from 'ol-ext/control/SearchNominatim'
 import LayerSwitcher from 'ol-ext/control/LayerSwitcher'
 import FullScreen from 'ol/control/fullscreen'
 import interactions from 'ol/interaction'
+import {
+  mapMutations,
+  mapGetters
+} from 'vuex'
 
 import layers from '@/components/layers'
 import store from '@/store'
@@ -29,14 +33,17 @@ export default {
       title: 'Maps'
     }
   },
+  computed: {
+    ...mapGetters(['zoom', 'center'])
+  },
   mounted: function () {
     const map = new Map({
       interactions: interactions.defaults().extend([dragAndDropInteraction]),
       layers,
       target: 'map',
       view: new View({
-        center: POI.faycelles,
-        zoom: store.getters.zoom
+        center: this.center,
+        zoom: this.zoom
       })
     })
     map.addControl(new FullScreen())
@@ -55,7 +62,10 @@ export default {
     map.addControl(search)
     map.on('moveend', function (event) {
       console.log(event.map.getView().getZoom())
-      store.commit('setZoom', event.map.getView().getZoom())
+      store.commit('setView', {
+        zoom: event.map.getView().getZoom(),
+        center: event.map.getView().getCenter()
+      })
     })
   }
 }

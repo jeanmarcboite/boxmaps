@@ -1,18 +1,23 @@
+import POI from '@/assets/poi'
+
 const state = {
-  zoom: 12
+  zoom: 12,
+  center: POI.faycelles
 }
 
 // getters
 const getters = {
   zoom: state => state.zoom,
+  center: state => state.center,
 }
 
 const actions = {
 }
 
 const mutations = {
-  setZoom(state, value) {
-    state.zoom = value
+  setView(state, value) {
+    state.zoom = value.zoom
+    state.center = value.center
   }
 }
 
