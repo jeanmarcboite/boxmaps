@@ -1,9 +1,9 @@
 const state = {
   osm: {
-    visible: true,
+    visible: false,
     layers: {
       osm: {
-        visible: false
+        visible: true
       }
     }
   },
