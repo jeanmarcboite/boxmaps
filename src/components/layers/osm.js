@@ -1,14 +1,13 @@
 import Tile from 'ol/layer/tile'
 import OSM from 'ol/source/osm'
-// some JS file
 import store from '@/store'
-
+console.log(store.getters.osm.visible)
 const osm = new Tile({
   title: 'OSM',
   type: 'base',
   baseLayer: true,
   source: new OSM(),
-  visible: false,
+  visible: store.getters.osm.layers.osm.visible,
   noSwitcherDelete: true})
 
 const osmLayers = [osm]

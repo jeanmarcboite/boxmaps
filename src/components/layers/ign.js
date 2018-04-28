@@ -1,6 +1,7 @@
 import Tile from 'ol/layer/tile'
 import WMTS from 'ol/source/wmts'
 import TileGridWMTS from 'ol/tilegrid/wmts'
+import store from '@/store'
 
 // API key valid for 'openlayers.org' and 'localhost'.
 // Expiration date is 06/29/2018.
@@ -74,14 +75,14 @@ export const ignGeo = new Tile({
   type: 'base',
   baseLayer: true,
   source: ignSource('GEOGRAPHICALGRIDSYSTEMS.MAPS'),
-  visible: true,
+  visible: store.getters.ign.layers.geo.visible,
   noSwitcherDelete: true
 })
 
 export const ignPhotos = new Tile({
   title: 'IGN Photos',
   source: ignSource('ORTHOIMAGERY.ORTHOPHOTOS'),
-  visible: false}
+  visible: store.getters.ign.layers.photos.visible}
 )
 
 const ignLayers = [ignGeo, ignPhotos]

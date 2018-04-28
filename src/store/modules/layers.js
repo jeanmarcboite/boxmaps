@@ -1,6 +1,11 @@
 const state = {
   osm: {
-    visible: false
+    visible: true,
+    layers: {
+      osm: {
+        visible: false
+      }
+    }
   },
   ign: {
     visible: true,
