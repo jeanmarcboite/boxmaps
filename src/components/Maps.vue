@@ -14,8 +14,13 @@ import FullScreen from 'ol/control/fullscreen'
 import interactions from 'ol/interaction'
 
 import layers from '@/components/layers'
+import store from '@/store'
 
 import dragAndDropInteraction from '@/components/ol/dndInteraction'
+
+function logEvent(event) {
+  console.log(event)
+}
 
 export default {
   name: 'Map',
@@ -48,6 +53,10 @@ export default {
       })
     })
     map.addControl(search)
+    map.on('moveend', function (event) {
+      console.log(event.map.getView().getZoom())
+      store.commit('setZoom', event.map.getView().getZoom())
+    })
   }
 }
 </script>

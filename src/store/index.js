@@ -12,15 +12,15 @@ const state = {
   app: 'Vuetify Map'
 }
 
-const plugins = [createPersistedState({key: 'maps'})]
+const plugins = [createPersistedState({key: 'maps-vuex'})]
 if (debug) {
   plugins.push(createLogger())
 }
 
 const store = new Vuex.Store({
   modules: {
-    settings,
-    layers
+    layers,
+    settings
   },
   state,
   plugins
