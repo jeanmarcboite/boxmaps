@@ -1,5 +1,9 @@
 <template>
 <div>
+  <div>
+    <label for="readFile">Sélectionner un fichier (GPX)</label>
+    <input type="file" id="readFile" name="readFile" accept=".gpx" multiple>
+  </div>
   <div id="map" class="map" />
 </div>
 </template>
@@ -19,6 +23,7 @@ import {
 
 import layers from '@/components/layers'
 import store from '@/store'
+import readFile from '@/components/ol/readfile'
 
 import dragAndDropInteraction from '@/components/ol/dndInteraction'
 
@@ -67,6 +72,8 @@ export default {
         center: event.map.getView().getCenter()
       })
     })
+
+    document.querySelector('#readFile').onchange = readFile(map)
   }
 }
 </script>

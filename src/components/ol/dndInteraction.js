@@ -5,7 +5,7 @@ import IGC from 'ol/format/igc'
 import KML from 'ol/format/kml'
 import TopoJSON from 'ol/format/topojson'
 import VectorLayer from 'ol/layer/vector'
-import VectorSource from 'ol/source/vector.js'
+import VectorSource from 'ol/source/vector'
 import styleFunction from './style'
 
 const dragAndDropInteraction = new DragAndDrop({
