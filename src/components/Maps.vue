@@ -80,16 +80,15 @@ export default {
     toolBar.addControl(new FullScreen())
 
     // Add a custom push button with onToggle function
-    var hello = new Button({
-      html: '<i class="fa fa-smile-o"></i>',
-      className: 'hello',
-      title: 'Hello world!',
+    const wrench = new Button({
+      html: '<i class="fa fa-wrench"></i>',
+      title: 'Toggle toolbar',
       handleClick: function () {
         toolBar.setVisible(!toolBar.getVisible())
       }
     })
-    hello.element.classList.add('hello')
-    map.addControl(hello)
+    wrench.element.classList.add('ol-wrench')
+    map.addControl(wrench)
 
     document.querySelector('#readFile').onchange = readFile(map)
   }
@@ -107,12 +106,14 @@ export default {
 /* Bar style */
 .ol-control.ol-bar {
     top: 0.5em;
-    left: 3.5em;
+    left: 3.7em;
 }
 .ol-search {
+    position: absolute;
     top: 2.5em;
+    left: 2.7em;
 }
-.hello {
+.ol-wrench {
     position: absolute;
     left: 0.5em;
     top: 4em;
