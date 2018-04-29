@@ -58,7 +58,6 @@ export default {
     }))
     const search = new SearchNominatim()
     search.on('select', function (e) {
-      // console.log(e)
       map.getView().animate({
         center: e.coordinate,
         zoom: Math.max(map.getView().getZoom(), 13)
@@ -66,7 +65,6 @@ export default {
     })
     map.addControl(search)
     map.on('moveend', function (event) {
-      console.log(event.map.getView().getZoom())
       store.commit('setView', {
         zoom: event.map.getView().getZoom(),
         center: event.map.getView().getCenter()
