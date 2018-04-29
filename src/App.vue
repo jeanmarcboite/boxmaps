@@ -16,3 +16,7 @@ export default {
   name: 'App'
 }
 </script>
+
+<style>
+@import "font-awesome/css/font-awesome.css";
+</style>

@@ -14,7 +14,11 @@ import proj from 'ol/proj'
 import Scaleline from 'ol/control/scaleline'
 import SearchNominatim from 'ol-ext/control/SearchNominatim'
 import LayerSwitcher from 'ol-ext/control/LayerSwitcher'
+import Bar from 'ol-ext/control/Bar'
 import FullScreen from 'ol/control/fullscreen'
+import ZoomToExtent from 'ol/control/zoomtoextent'
+import Rotate from 'ol/control/rotate'
+import Button from 'ol-ext/control/Button'
 import interactions from 'ol/interaction'
 import {
   mapMutations,
@@ -63,13 +67,34 @@ export default {
         zoom: Math.max(map.getView().getZoom(), 13)
       })
     })
-    map.addControl(search)
+    // map.addControl(search)
     map.on('moveend', function (event) {
       store.commit('setView', {
         zoom: event.map.getView().getZoom(),
         center: event.map.getView().getCenter()
       })
     })
+
+    const toolBar = new Bar()
+    toolBar.setPosition('right')
+    map.addControl(toolBar)
+    map.addControl(new ZoomToExtent({
+      extent: [265971, 6243397, 273148, 6250665]
+    }))
+    toolBar.addControl(new Rotate())
+    toolBar.addControl(new FullScreen())
+    // Add a custom push button with onToggle function
+    var hello = new Button({
+      html: '<i class="fa fa-smile-o"></i>',
+      className: 'hello',
+      title: 'Hello world!',
+      handleClick: function () {
+        console.log('hello World!')
+      }
+    })
+    console.dir(hello)
+    hello.element.classList.add('hello')
+    map.addControl(hello)
 
     document.querySelector('#readFile').onchange = readFile(map)
   }
@@ -80,4 +105,9 @@ export default {
 @import "ol/ol.css";
 @import 'ol-ext/control/Search.css';
 @import 'ol-ext/control/LayerSwitcher.css';
+.hello {
+    position: absolute;
+    left: 5em;
+    bottom: 5em;
+}
 </style>
