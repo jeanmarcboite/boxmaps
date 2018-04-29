@@ -12,6 +12,7 @@ import Map from 'ol/map'
 import View from 'ol/view'
 import proj from 'ol/proj'
 import Scaleline from 'ol/control/scaleline'
+import Toggle from 'ol-ext/control/Toggle'
 import SearchNominatim from 'ol-ext/control/SearchNominatim'
 import LayerSwitcher from 'ol-ext/control/LayerSwitcher'
 import Bar from 'ol-ext/control/Bar'
@@ -20,6 +21,8 @@ import ZoomToExtent from 'ol/control/zoomtoextent'
 import Rotate from 'ol/control/rotate'
 import Button from 'ol-ext/control/Button'
 import interaction from 'ol/interaction'
+import Select from 'ol/interaction/select'
+import Draw from 'ol/interaction/draw'
 import control from 'ol/control/control'
 import {
   mapMutations,
@@ -29,6 +32,9 @@ import {
 import layers from '@/components/layers'
 import store from '@/store'
 import readFile from '@/components/ol/readfile'
+import VectorSource from 'ol/source/vector'
+import style from '@/components/ol/style'
+import VectorLayer from 'ol/layer/vector'
 
 import dragAndDropInteraction from '@/components/ol/dndInteraction'
 
@@ -75,8 +81,50 @@ export default {
       })
     })
 
+    const vectorSource = new VectorSource({})
+    map.addLayer(new VectorLayer({
+      title: 'Add points',
+      source: vectorSource,
+      style
+    }))
+
     const toolBar = new Bar()
     map.addControl(toolBar)
+
+    /* Nested toobar with one control activated at once */
+    const leftToolBar = new Bar({
+      toggleOne: true,
+      group: true
+    })
+    toolBar.addControl(leftToolBar)
+    // Add selection tool (a toggle control with a select interaction)
+    var selectCtrl = new Toggle({
+      html: '<i class="fa fa-hand-pointer-o"></i>',
+      className: 'select',
+      title: 'Select',
+      interaction: new Select(),
+      active: true,
+      onToggle: function (active) {
+        console.log('Select is ' + (active ? 'activated' : 'deactivated'))
+      }
+    })
+
+    const editCtrl = new Toggle({
+      html: '<i class="fa fa-map-marker" ></i>',
+      className: 'edit',
+      title: 'Point',
+      interaction: new Draw({
+        type: 'Point',
+        source: vectorSource
+      }),
+      onToggle: function (active) {
+        console.log('Edition is ' + (active ? 'activated' : 'deactivated'))
+      }
+    })
+
+    leftToolBar.addControl(selectCtrl)
+    leftToolBar.addControl(editCtrl)
+
     toolBar.addControl(new FullScreen())
 
     // Add a custom push button with onToggle function
@@ -106,7 +154,7 @@ export default {
 /* Bar style */
 .ol-control.ol-bar {
     top: 0.5em;
-    left: 3.7em;
+    left: 6em;
 }
 .ol-search {
     position: absolute;
