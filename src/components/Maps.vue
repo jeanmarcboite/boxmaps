@@ -7,22 +7,12 @@
 <script>
 import Map from 'ol/map'
 import View from 'ol/view'
-import proj from 'ol/proj'
 import Scaleline from 'ol/control/scaleline'
-import Toggle from 'ol-ext/control/Toggle'
 import SearchNominatim from 'ol-ext/control/SearchNominatim'
 import LayerSwitcher from 'ol-ext/control/LayerSwitcher'
-import Bar from 'ol-ext/control/Bar'
-import FullScreen from 'ol/control/fullscreen'
-import ZoomToExtent from 'ol/control/zoomtoextent'
-import Rotate from 'ol/control/rotate'
 import Button from 'ol-ext/control/Button'
 import interaction from 'ol/interaction'
-import Select from 'ol/interaction/select'
-import Draw from 'ol/interaction/draw'
-import control from 'ol/control/control'
 import {
-  mapMutations,
   mapGetters
 } from 'vuex'
 
@@ -32,10 +22,6 @@ import readFile from '@/components/ol/readfile'
 
 import dragAndDropInteraction from '@/components/ol/dndInteraction'
 import Toolbar from '@/components/ol/toolbar'
-
-function logEvent(event) {
-  console.log(event)
-}
 
 export default {
   name: 'Map',
@@ -87,8 +73,6 @@ export default {
     })
     wrench.element.classList.add('ol-wrench')
     map.addControl(wrench)
-
-    document.getElementById('inputFile').onchange = readFile(map)
   }
 }
 </script>

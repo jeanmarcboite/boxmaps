@@ -1,5 +1,4 @@
 import ol from 'ol'
-import Control from 'ol/control/control'
 import Bar from 'ol-ext/control/Bar'
 import Select from 'ol/interaction/select'
 import Draw from 'ol/interaction/draw'
@@ -31,6 +30,8 @@ function Toolbar(map, options) {
       document.getElementById('inputFile').click()
     }
   })
+
+  document.getElementById('inputFile').onchange = readFile(map)
 
   // read.element.onchange = readFile(map)
   this.addControl(readButton)
