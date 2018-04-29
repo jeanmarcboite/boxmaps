@@ -19,7 +19,8 @@ import FullScreen from 'ol/control/fullscreen'
 import ZoomToExtent from 'ol/control/zoomtoextent'
 import Rotate from 'ol/control/rotate'
 import Button from 'ol-ext/control/Button'
-import interactions from 'ol/interaction'
+import interaction from 'ol/interaction'
+import control from 'ol/control/control'
 import {
   mapMutations,
   mapGetters
@@ -47,7 +48,7 @@ export default {
   },
   mounted: function () {
     const map = new Map({
-      interactions: interactions.defaults().extend([dragAndDropInteraction]),
+      interactions: interaction.defaults().extend([dragAndDropInteraction]),
       layers,
       target: 'map',
       view: new View({
@@ -55,7 +56,6 @@ export default {
         zoom: this.zoom
       })
     })
-    map.addControl(new FullScreen())
     map.addControl(new Scaleline())
     map.addControl(new LayerSwitcher({
       trash: true
@@ -67,7 +67,7 @@ export default {
         zoom: Math.max(map.getView().getZoom(), 13)
       })
     })
-    // map.addControl(search)
+    map.addControl(search)
     map.on('moveend', function (event) {
       store.commit('setView', {
         zoom: event.map.getView().getZoom(),
@@ -76,23 +76,18 @@ export default {
     })
 
     const toolBar = new Bar()
-    toolBar.setPosition('right')
     map.addControl(toolBar)
-    map.addControl(new ZoomToExtent({
-      extent: [265971, 6243397, 273148, 6250665]
-    }))
-    toolBar.addControl(new Rotate())
     toolBar.addControl(new FullScreen())
+
     // Add a custom push button with onToggle function
     var hello = new Button({
       html: '<i class="fa fa-smile-o"></i>',
       className: 'hello',
       title: 'Hello world!',
       handleClick: function () {
-        console.log('hello World!')
+        toolBar.setVisible(!toolBar.getVisible())
       }
     })
-    console.dir(hello)
     hello.element.classList.add('hello')
     map.addControl(hello)
 
@@ -104,10 +99,22 @@ export default {
 <style lang="scss">
 @import "ol/ol.css";
 @import 'ol-ext/control/Search.css';
+@import 'ol-ext/control/Bar.css';
 @import 'ol-ext/control/LayerSwitcher.css';
+.ol-control.ol-layerswitcher {
+    top: 0.5em;
+}
+/* Bar style */
+.ol-control.ol-bar {
+    top: 0.5em;
+    left: 3.5em;
+}
+.ol-search {
+    top: 2.5em;
+}
 .hello {
     position: absolute;
-    left: 5em;
-    bottom: 5em;
+    left: 0.5em;
+    top: 4em;
 }
 </style>
