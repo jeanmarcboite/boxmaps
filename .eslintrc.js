@@ -18,7 +18,7 @@ module.exports = {
   // add your custom rules here
   rules: {
     'indent': 1,
-    'no-unused-vars': 1,
+    'no-unused-vars': 0,
     'comma-dangle': 'off',
     'space-before-function-paren': 'off',
     // allow async-await

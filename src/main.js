@@ -8,10 +8,12 @@ import 'vuetify/dist/vuetify.min.css'
 import { sync } from 'vuex-router-sync'
 
 import store from '@/store'
+import VueSplit from 'vue-split-panel'
 
 Vue.use(Vuetify)
 
 Vue.config.productionTip = false
+Vue.use(VueSplit)
 
 sync(store, router)
 

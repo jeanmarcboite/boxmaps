@@ -1,62 +1,56 @@
 import Fill from 'ol/style/fill'
 import Stroke from 'ol/style/stroke'
 import Style from 'ol/style/style'
-import CircleStyle from 'ol/style/circle.js'
+import RegularShape from 'ol/style/regularshape'
+import CircleStyle from 'ol/style/circle'
+
+export const profileStyle = [
+  new Style({
+    image: new RegularShape({
+      radius: 10,
+      radius2: 5,
+      points: 5,
+      fill: new Fill({color: 'blue'})
+    }),
+    stroke: new Stroke({
+      color: [
+        0, 0, 255
+      ],
+      width: 2
+    }),
+    fill: new Fill({
+      color: [0, 0, 255, 0.3]
+    })
+  })]
 
 export const defaultStyle = {
   'Point': new Style({
     image: new CircleStyle({
-      fill: new Fill({
-        color: 'rgba(255,255,0,0.5)'
-      }),
+      fill: new Fill({color: 'rgba(255,255,0,0.5)'}),
       radius: 5,
-      stroke: new Stroke({
-        color: '#f0f',
-        width: 1
-      })
+      stroke: new Stroke({color: '#f0f', width: 1})
     })
   }),
   'LineString': new Style({
-    stroke: new Stroke({
-      color: '#f00',
-      width: 3
-    })
+    stroke: new Stroke({color: '#f00', width: 3})
   }),
   'Polygon': new Style({
-    fill: new Fill({
-      color: 'rgba(0,255,255,0.5)'
-    }),
-    stroke: new Stroke({
-      color: '#0ff',
-      width: 1
-    })
+    fill: new Fill({color: 'rgba(0,255,255,0.5)'}),
+    stroke: new Stroke({color: '#0ff', width: 1})
   }),
   'MultiPoint': new Style({
     image: new CircleStyle({
-      fill: new Fill({
-        color: 'rgba(255,0,255,0.5)'
-      }),
+      fill: new Fill({color: 'rgba(255,0,255,0.5)'}),
       radius: 5,
-      stroke: new Stroke({
-        color: '#f0f',
-        width: 1
-      })
+      stroke: new Stroke({color: '#f0f', width: 1})
     })
   }),
   'MultiLineString': new Style({
-    stroke: new Stroke({
-      color: '#00f',
-      width: 3
-    })
+    stroke: new Stroke({color: '#00f', width: 3})
   }),
   'MultiPolygon': new Style({
-    fill: new Fill({
-      color: 'rgba(0,0,255,0.5)'
-    }),
-    stroke: new Stroke({
-      color: '#00f',
-      width: 1
-    })
+    fill: new Fill({color: 'rgba(0,0,255,0.5)'}),
+    stroke: new Stroke({color: '#00f', width: 1})
   })
 }
 

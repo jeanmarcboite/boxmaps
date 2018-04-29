@@ -1,9 +1,17 @@
 <template>
-<div>
-  <input type="file" id="inputFile" accept=".gpx" multiple style="display:none;" />
-  <div id="map" class="map" />
+<div class="app">
+  <Split :direction="direction">
+    <SplitArea :size="80">
+      <input type="file" id="inputFile" accept=".gpx" multiple style="display:none;" />
+      <div id="map" class="map" />
+    </SplitArea>
+    <SplitArea :size="20" id="profil">
+      PROFIL
+    </SplitArea>
+  </Split>
 </div>
 </template>
+
 <script>
 import Map from 'ol/map'
 import View from 'ol/view'
@@ -18,16 +26,16 @@ import {
 
 import layers from '@/components/layers'
 import store from '@/store'
-import readFile from '@/components/ol/readfile'
 
 import dragAndDropInteraction from '@/components/ol/dndInteraction'
 import Toolbar from '@/components/ol/toolbar'
-
+import Profil from 'ol-ext/control/Profile'
 export default {
   name: 'Map',
   data() {
     return {
-      title: 'Maps'
+      title: 'Maps',
+      direction: 'vertical'
     }
   },
   computed: {
@@ -73,6 +81,13 @@ export default {
     })
     wrench.element.classList.add('ol-wrench')
     map.addControl(wrench)
+    // New profil outside the map
+    map.profil = new Profil({
+      target: 'profil',
+      width: 400,
+      height: 200
+    })
+    map.addControl(map.profil)
   }
 }
 </script>
@@ -100,4 +115,5 @@ export default {
     left: 0.5em;
     top: 4em;
 }
+@import 'ol-ext/control/Profil.css';
 </style>
