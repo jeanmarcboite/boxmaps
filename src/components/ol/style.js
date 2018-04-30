@@ -10,7 +10,7 @@ export const profileStyle = [
       radius: 10,
       radius2: 5,
       points: 5,
-      fill: new Fill({color: 'blue'})
+      fill: new Fill({color: 'red'})
     }),
     stroke: new Stroke({
       color: [
@@ -25,9 +25,15 @@ export const profileStyle = [
 
 export const defaultStyle = {
   'Point': new Style({
-    image: new CircleStyle({
+    image: new RegularShape({
+      radius: 10,
+      radius2: 5,
+      points: 8,
+      fill: new Fill({color: 'red'})
+    }),
+    image2: new CircleStyle({
       fill: new Fill({color: 'rgba(255,255,0,0.5)'}),
-      radius: 5,
+      radius: 8,
       stroke: new Stroke({color: '#f0f', width: 1})
     })
   }),

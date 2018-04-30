@@ -112,6 +112,7 @@ export default {
 
 <style lang="scss">
 @import "ol/ol.css";
+@import "ol-ext/dist/ol-ext.css";
 @import 'ol-ext/control/Search.css';
 @import 'ol-ext/control/Bar.css';
 @import 'ol-ext/control/LayerSwitcher.css';
@@ -146,4 +147,8 @@ export default {
     right: 0.5em;
 }
 @import 'ol-ext/control/Profil.css';
+.ol-profil .ol-profilbar,
+.ol-profil .ol-profilcursor:before {
+    background: blue;
+}
 </style>
