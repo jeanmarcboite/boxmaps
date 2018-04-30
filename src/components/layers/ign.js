@@ -6,7 +6,9 @@ import store from '@/store'
 // API key valid for 'openlayers.org' and 'localhost'.
 // Expiration date is 06/29/2018.
 const key1 = '2mqbg0z6cx7ube8gsou10nrt'
-const key = '6w135ptdb0vpxhop3pjbhb23'
+const key2 = '6w135ptdb0vpxhop3pjbhb23'
+const key = '7w2fnww4mguagxhybm8l55gw'
+
 var resolutions = [
   156543.03392804103,
   78271.5169640205,
