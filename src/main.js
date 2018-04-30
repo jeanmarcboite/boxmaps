@@ -14,7 +14,6 @@ Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 Vue.use(VueSplit)
-
 sync(store, router)
 
 /* eslint-disable no-new */

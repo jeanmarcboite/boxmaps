@@ -1,14 +1,18 @@
 <template>
 <div class="app">
-  <Split :direction="direction">
-    <SplitArea :size="80">
-      <input type="file" id="inputFile" accept=".gpx" multiple style="display:none;" />
-      <div id="map" class="map" />
-    </SplitArea>
-    <SplitArea :size="20" id="profil">
-      PROFIL
-    </SplitArea>
-  </Split>
+  <input type="file" id="inputFile" accept=".gpx" multiple style="display:none;" />
+  <div id="map" class="map" />
+  <v-navigation-drawer temporary :right="right" v-model="drawer" fixed app>
+    <v-expansion-panel>
+      <v-expansion-panel-content v-for="(item,i) in 5" :key="i">
+        <div slot="header">Item</div>
+        <v-card>
+          <v-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-card-text>
+        </v-card>
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+
+  </v-navigation-drawer>
 </div>
 </template>
 
@@ -35,13 +39,16 @@ export default {
   data() {
     return {
       title: 'Maps',
-      direction: 'vertical'
+      direction: 'vertical',
+      right: true,
+      drawer: false
     }
   },
   computed: {
     ...mapGetters(['zoom', 'center'])
   },
   mounted: function () {
+    const this_ = this
     const map = new Map({
       interactions: interaction.defaults().extend([dragAndDropInteraction]),
       layers,
@@ -81,6 +88,17 @@ export default {
     })
     wrench.element.classList.add('ol-wrench')
     map.addControl(wrench)
+
+    const profile = new Button({
+      html: '<i class="fa fa-bars"></i>',
+      title: 'Toggle toolbar',
+      handleClick: function () {
+        this_.drawer = true
+      }
+    })
+    profile.element.classList.add('ol-profile')
+
+    map.addControl(profile)
     // New profil outside the map
     map.profil = new Profil({
       target: 'profil',
@@ -98,8 +116,15 @@ export default {
 @import 'ol-ext/control/Bar.css';
 @import 'ol-ext/control/LayerSwitcher.css';
 .ol-control.ol-layerswitcher {
-    top: 0.5em;
+    left: 0.5em;
+    right: auto;
+    top: 6em;
 }
+
+.ol-layerswitcher button {
+    float: left;
+}
+
 /* Bar style */
 .ol-control.ol-bar {
     top: 0.5em;
@@ -114,6 +139,11 @@ export default {
     position: absolute;
     left: 0.5em;
     top: 4em;
+}
+.ol-profile {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
 }
 @import 'ol-ext/control/Profil.css';
 </style>
