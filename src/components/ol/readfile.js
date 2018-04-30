@@ -20,7 +20,10 @@ const readFeatures = function(event, map) {
         featureProjection: 'EPSG:3857'
       })
       const source = new VectorSource({features})
-      map.addLayer(new VectorLayer({title, source, style}))
+      const vectorLayer = new VectorLayer({title, source, style})
+      // copy the extent before it gets lost
+      vectorLayer.extent = source.getExtent().slice()
+      map.addLayer(vectorLayer)
       if (files.length === 1) {
         map.getView().fit(source.getExtent())
         map.source = source

@@ -61,6 +61,7 @@ function Toolbar(map, options) {
 
   map.addLayer(new VectorLayer({
     title: 'draw line',
+    displayInLayerSwitcher: false,
     source,
     style
   }))

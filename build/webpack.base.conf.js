@@ -39,7 +39,9 @@ module.exports = {
       '@': resolve('src'),
     }
   },
-  plugins: [new webpack.ProvidePlugin({$: "jquery", jquery: "jQuery", "windows.jQuery": "jquery"})],
+  plugins: [
+    new webpack.ProvidePlugin({$: "jquery", jquery: "jQuery", "windows.jQuery": "jquery"}),
+  ],
   module: {
     rules: [
       ...(config.dev.useEslint ? [createLintingRule()] : []),

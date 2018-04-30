@@ -28,7 +28,8 @@ dragAndDropInteraction.on('addfeatures', function(event) {
   event.target.map_.addLayer(new VectorLayer({
     title,
     source: vectorSource,
-    style: styleFunction
+    style: styleFunction,
+    displayInLayerSwitcher: true
   }))
   event.target.map_.getView().fit(vectorSource.getExtent())
 })

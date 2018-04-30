@@ -1,0 +1,96 @@
+.track-switcher.shown.ol-control {
+    background-color: transparent;
+}
+
+.track-switcher.shown.ol-control:hover {
+    background-color: transparent;
+}
+
+.track-switcher {
+    position: absolute;
+    top: 6em;
+    left: 0.5em;
+    text-align: left;
+}
+
+.track-switcher.shown {
+    bottom: 3em;
+}
+
+.track-switcher .panel {
+    padding: 0 1em 0 0;
+    margin: 0;
+    border: 4px solid #eee;
+    border-radius: 4px;
+    background-color: white;
+    display: none;
+    max-height: 100%;
+    overflow-y: auto;
+}
+
+.track-switcher.shown .panel {
+    display: block;
+}
+
+.track-switcher button {
+    float: left;
+    width: 22px;
+    height: 22px;
+    background-image: url(data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTZweCIgaGVpZ2h0PSIxNnB4Ij4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNNDg3LjY2MywyODIuNzY3Yy0zMi40NDctMzIuNDQ3LTg1LjA1NC0zMi40NDctMTE3LjUwMSwwYy0yNi44MzMsMjYuODMzLTMyLjA3Niw2OC40MzgtMTIuNzM4LDEwMS4wODlsNTMuNTQ5LDkwLjQxNyAgICBIMTA1LjY1N2MtMjYuMzI5LDAtNDcuNzQ5LTIxLjQyMS00Ny43NDktNDcuNzVjMC0yNi4zMjksMjEuNDItNDcuNzQ5LDQ3Ljc0OS00Ny43NDloMTQzLjU4OSAgICBjNDIuODcxLDAsNzcuNzQ5LTM0Ljg3OCw3Ny43NDktNzcuNzQ5YzAtNDIuODcxLTM0Ljg3OC03Ny43NDktNzcuNzQ5LTc3Ljc0OUgxMDEuMDI3bDUzLjU0OS05MC40MTYgICAgYzE5LjMzOC0zMi42NTEsMTQuMDk1LTc0LjI1Ni0xMi43MzgtMTAxLjA4OWMtMzIuNDQ3LTMyLjQ0Ny04NS4wNTQtMzIuNDQ3LTExNy41MDEsMEMtMi40OTYsNTguNjAzLTcuNzM5LDEwMC4yMDgsMTEuNTk5LDEzMi44NTkgICAgbDcxLjQ4OSwxMjAuNzA4bDAuMTcyLTAuMjkxaDE2NS45ODZjMjYuMzI5LDAsNDcuNzQ5LDIxLjQyLDQ3Ljc0OSw0Ny43NDljMCwyNi4zMjktMjEuNDIsNDcuNzQ5LTQ3Ljc0OSw0Ny43NDlIMTA1LjY1NyAgICBjLTQyLjg3MSwwLTc3Ljc0OSwzNC44NzgtNzcuNzQ5LDc3Ljc0OWMwLDQyLjg3MSwzNC44NzgsNzcuNzUsNzcuNzQ5LDc3Ljc1SDQyOC43NGwwLjE3MiwwLjI5MWw3MS40ODktMTIwLjcwNyAgICBDNTE5LjczOSwzNTEuMjA1LDUxNC40OTYsMzA5LjYsNDg3LjY2MywyODIuNzY3eiBNODMuMDg3LDExNi43MTNjLTE0LjQ0MiwwLTI2LjE5MS0xMS43NDktMjYuMTkxLTI2LjE5MSAgICBjMC0xNC40NDIsMTEuNzQ5LTI2LjE5MSwyNi4xOTEtMjYuMTkxYzE0LjQ0MiwwLDI2LjE5MSwxMS43NDksMjYuMTkxLDI2LjE5MUMxMDkuMjc4LDEwNC45NjQsOTcuNTI5LDExNi43MTMsODMuMDg3LDExNi43MTN6ICAgICBNNDI3Ljc5LDM2Ny43MWMtMTQuNDQyLDAtMjYuMTkxLTExLjc0OS0yNi4xOTEtMjYuMTkxYzAtMTQuNDQyLDExLjc0OS0yNi4xOTEsMjYuMTkxLTI2LjE5MSAgICBjMTQuNDQyLDAsMjYuMTkxLDExLjc0OSwyNi4xOTEsMjYuMTkxUzQ0Mi4yMzIsMzY3LjcxLDQyNy43OSwzNjcuNzF6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==);
+    background-repeat: no-repeat;
+    background-position: 2px;
+    background-color: grey;
+    border: none;
+}
+<style type="text/css">div.image {max-width: 256px;max-height: 256px;background-image: }</style>
+.track-switcher.shown button {
+    display: none;
+}
+
+.track-switcher button:focus, .track-switcher button:hover {
+    background-color: white;
+}
+
+.track-switcher ul {
+    padding-left: 1em;
+    list-style: none;
+}
+
+.track-switcher li.group {
+    padding-top: 5px;
+}
+
+.track-switcher li.group > label {
+    font-weight: bold;
+}
+
+.track-switcher li.layer {
+    display: table;
+}
+
+.track-switcher li.layer label, .track-switcher li.layer input {
+    display: table-cell;
+    vertical-align: sub;
+}
+
+.track-switcher label.disabled {
+    opacity:0.4;
+}
+
+.track-switcher input {
+    margin: 4px;
+}
+
+.track-switcher.touch ::-webkit-scrollbar {
+    width: 4px;
+}
+
+.track-switcher.touch ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+.track-switcher.touch ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
