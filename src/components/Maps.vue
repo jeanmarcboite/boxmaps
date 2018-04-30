@@ -27,11 +27,13 @@ import LayerSwitcher from 'ol-ext/control/LayerSwitcher'
 import Button from 'ol-ext/control/Button'
 import interaction from 'ol/interaction'
 import {
-  mapGetters
+  mapGetters,
+  mapMutations
 } from 'vuex'
 
 import layers from '@/components/layers'
 import store from '@/store'
+import GPX from 'ol/format/gpx'
 
 import dragAndDropInteraction from '@/components/ol/dndInteraction'
 import Toolbar from '@/components/ol/toolbar'
@@ -40,21 +42,32 @@ import Group from 'ol/layer/group'
 import VectorLayer from 'ol/layer/vector'
 import TrackSwitcher from '@/components/ol/TrackSwitcher'
 
-function displayLayer(layer) {
+function storeFeatures(layer, store) {
+  var writer = new GPX()
+  store.commit('addGPX', {
+    title: layer.get('title'),
+    gpx: writer.writeFeatures(layer.getSource().getFeatures(), {
+      dataProjection: 'EPSG:4326',
+      featureProjection: 'EPSG:3857'
+    })
+  })
+  return 'stored'
+}
+
+function storeLayer(layer, store) {
   if (layer instanceof Group) {
-    console.log(layer.get('title'))
-    displayLayers(layer)
+    console.log('Group: ', layer.get('title'))
+    storeLayers(layer, store)
   } else {
     console.log(layer.get('title'))
-    console.log(layer.getProperties())
     if (layer instanceof VectorLayer) {
-      console.log(layer.getSource().getExtent())
+      console.log(storeFeatures(layer, store))
     }
   }
 }
 
-function displayLayers(map) {
-  map.getLayers().forEach(g => displayLayer(g))
+function storeLayers(map, store) {
+  map.getLayers().forEach(g => storeLayer(g, store))
 }
 
 export default {
@@ -70,6 +83,12 @@ export default {
   },
   computed: {
     ...mapGetters(['zoom', 'center'])
+  },
+  methods: {
+    storeLayers: function () {
+      console.log(this.map)
+      storeLayers(this.map, this.$store)
+    }
   },
   mounted: function () {
     const this_ = this
@@ -110,7 +129,8 @@ export default {
       html: '<i class="fa fa-wrench"></i>',
       title: 'Toggle toolbar',
       handleClick: function () {
-        toolBar.setVisible(!toolBar.getVisible())
+        // toolBar.setVisible(!toolBar.getVisible())
+        this_.storeLayers()
       }
     })
     wrench.element.classList.add('ol-wrench')
@@ -125,7 +145,7 @@ export default {
         event.preventDefault()
         event.stopPropagation()
 
-        displayLayers(this_.map)
+        storeLayers()
       }
     })
     profile.element.classList.add('ol-profile')

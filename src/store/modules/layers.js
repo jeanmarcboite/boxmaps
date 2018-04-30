@@ -28,6 +28,8 @@ const state = {
         visible: false
       }
     }
+  },
+  gpx: {
   }
 }
 
@@ -44,6 +46,9 @@ const mutations = {
     } else {
       state[payload.group].visible = payload.visible
     }
+  },
+  addGPX(state, payload) {
+    state.gpx[payload.title] = payload.gpx
   }
 }
 
