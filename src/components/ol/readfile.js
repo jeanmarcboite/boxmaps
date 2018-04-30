@@ -25,7 +25,6 @@ const readFeatures = function(event, map) {
         map.getView().fit(source.getExtent())
         map.source = source
       }
-      console.log('source: ' + source.getState())
       if (source.getState() === 'ready') {
         map.profil.setGeometry(source.getFeatures()[0], {
           graduation: 250,
