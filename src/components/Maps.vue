@@ -41,15 +41,13 @@ import Profil from 'ol-ext/control/Profile'
 import Group from 'ol/layer/group'
 import VectorLayer from 'ol/layer/vector'
 import TrackSwitcher from '@/components/ol/TrackSwitcher'
+import projection from '@/assets/projection'
 
 function storeFeatures(layer, store) {
   var writer = new GPX()
   store.commit('addGPX', {
     title: layer.get('title'),
-    gpx: writer.writeFeatures(layer.getSource().getFeatures(), {
-      dataProjection: 'EPSG:4326',
-      featureProjection: 'EPSG:3857'
-    })
+    gpx: writer.writeFeatures(layer.getSource().getFeatures(), projection)
   })
   return 'stored'
 }

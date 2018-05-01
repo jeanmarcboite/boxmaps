@@ -5,6 +5,8 @@ import VectorLayer from 'ol/layer/vector'
 import Point from 'ol/geom/point'
 import Feature from 'ol/feature'
 
+import projection from '@/assets/projection'
+
 const readFeatures = function(event, map) {
   const format = new GPX()
   const files = event.target.files
@@ -15,10 +17,7 @@ const readFeatures = function(event, map) {
     var reader = new FileReader()
     reader.readAsText(file, 'UTF-8')
     reader.onload = function(evt) {
-      const features = format.readFeatures(evt.target.result, {
-        dataProjection: 'EPSG:4326',
-        featureProjection: 'EPSG:3857'
-      })
+      const features = format.readFeatures(evt.target.result, projection)
       const source = new VectorSource({features})
       const vectorLayer = new VectorLayer({title, source, style})
       // copy the extent before it gets lost
