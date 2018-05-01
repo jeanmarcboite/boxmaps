@@ -43,30 +43,7 @@ import VectorLayer from 'ol/layer/vector'
 import TrackSwitcher from '@/components/ol/TrackSwitcher'
 import projection from '@/assets/projection'
 
-function storeFeatures(layer, store) {
-  var writer = new GPX()
-  store.commit('addGPX', {
-    title: layer.get('title'),
-    gpx: writer.writeFeatures(layer.getSource().getFeatures(), projection)
-  })
-  return 'stored'
-}
-
-function storeLayer(layer, store) {
-  if (layer instanceof Group) {
-    console.log('Group: ', layer.get('title'))
-    storeLayers(layer, store)
-  } else {
-    console.log(layer.get('title'))
-    if (layer instanceof VectorLayer) {
-      console.log(storeFeatures(layer, store))
-    }
-  }
-}
-
-function storeLayers(map, store) {
-  map.getLayers().forEach(g => storeLayer(g, store))
-}
+import addTracks from '@/components/ol/addtracks'
 
 export default {
   name: 'Map',
@@ -83,10 +60,7 @@ export default {
     ...mapGetters(['zoom', 'center'])
   },
   methods: {
-    storeLayers: function () {
-      console.log(this.map)
-      storeLayers(this.map, this.$store)
-    }
+    ...mapMutations(['addTrack'])
   },
   mounted: function () {
     const this_ = this
@@ -121,14 +95,16 @@ export default {
       })
     })
 
-    const toolBar = new Toolbar(this.map)
+    const toolBar = new Toolbar({
+      store: this.$store,
+      map: this.map
+    })
 
     const wrench = new Button({
       html: '<i class="fa fa-wrench"></i>',
       title: 'Toggle toolbar',
       handleClick: function () {
         // toolBar.setVisible(!toolBar.getVisible())
-        this_.storeLayers()
       }
     })
     wrench.element.classList.add('ol-wrench')
@@ -142,8 +118,6 @@ export default {
         console.log(this_.drawer)
         event.preventDefault()
         event.stopPropagation()
-
-        storeLayers()
       }
     })
     profile.element.classList.add('ol-profile')
@@ -156,6 +130,8 @@ export default {
       height: 200
     })
     this.map.addControl(this.map.profil)
+
+    addTracks(this.map, this.$store.state.tracks)
 
     const trackSwitcher = new TrackSwitcher()
     this.map.addControl(trackSwitcher)

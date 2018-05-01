@@ -29,7 +29,7 @@ const state = {
       }
     }
   },
-  gpx: {
+  tracks: {
   }
 }
 

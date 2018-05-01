@@ -8,7 +8,7 @@ import style from '@/components/ol/style'
 import VectorLayer from 'ol/layer/vector'
 import FullScreen from 'ol/control/fullscreen'
 import Button from 'ol-ext/control/Button'
-import readFile from '@/components/ol/readfile'
+import readFiles from '@/components/ol/readfiles'
 
 function IconToggle(options) {
   options.html = '<i class="' + options.icon + '"></i>'
@@ -16,7 +16,7 @@ function IconToggle(options) {
 }
 ol.inherits(IconToggle, Toggle)
 
-function Toolbar(map, options) {
+function Toolbar(options) {
   if (process.env.NODE_ENV !== 'production' && !(this instanceof Toolbar)) {
     console.warn('Toolbar is a constructor and should be called with the `new` keyword')
   }
@@ -31,7 +31,7 @@ function Toolbar(map, options) {
     }
   })
 
-  document.getElementById('inputFile').onchange = readFile(map)
+  document.getElementById('inputFile').onchange = readFiles(options)
 
   // read.element.onchange = readFile(map)
   this.addControl(readButton)
@@ -59,13 +59,13 @@ function Toolbar(map, options) {
 
   this.addControl(new FullScreen())
 
-  map.addLayer(new VectorLayer({
+  options.map.addLayer(new VectorLayer({
     title: 'draw line',
     displayInLayerSwitcher: false,
     source,
     style
   }))
-  map.addControl(this)
+  options.map.addControl(this)
 }
 ol.inherits(Toolbar, Bar)
 
