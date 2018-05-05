@@ -1,8 +1,11 @@
 <template>
 <div class="app">
   <input type="file" id="inputFile" accept=".gpx" multiple style="display:none;" />
-  <div id="map" class="map" />
-  <v-navigation-drawer temporary :right="right" v-model="drawer" fixed app>
+  <div id="menu">
+    <h1>Menu</h1>
+    <p style="border-bottom:1px solid #999;">
+      <i>ol.control.Overlay</i> can be used to display a menu or information on the top of the map.
+    </p>
     <v-expansion-panel>
       <v-expansion-panel-content v-for="(item,i) in 5" :key="i">
         <div slot="header">Item
@@ -13,6 +16,10 @@
         </v-card>
       </v-expansion-panel-content>
     </v-expansion-panel>
+    <div class="data"></div>
+  </div>
+  <div id="map" class="map" />
+  <v-navigation-drawer temporary :right="right" v-model="drawer" fixed app>
 
   </v-navigation-drawer>
 </div>
@@ -25,6 +32,8 @@ import Scaleline from 'ol/control/scaleline'
 import SearchNominatim from 'ol-ext/control/SearchNominatim'
 import LayerSwitcher from 'ol-ext/control/LayerSwitcher'
 import Button from 'ol-ext/control/Button'
+import Toggle from 'ol-ext/control/Toggle'
+import Overlay from 'ol-ext/control/Overlay'
 import interaction from 'ol/interaction'
 import {
   mapGetters,
@@ -135,6 +144,25 @@ export default {
 
     const trackSwitcher = new TrackSwitcher()
     this.map.addControl(trackSwitcher)
+
+    // Menu overlay
+    const menu = new Overlay({
+      closeBox: true,
+      className: 'slide-left menu',
+      content: document.getElementById('menu')
+    })
+    this.map.addControl(menu)
+
+    // A toggle control to show/hide the menu
+    const menuToggle = new Toggle({
+      html: '<i class="fa fa-bars"></i>',
+      className: 'menu',
+      title: 'Menu',
+      onToggle: function () {
+        menu.toggle()
+      }
+    })
+    this.map.addControl(menuToggle)
   }
 }
 </script>
@@ -186,5 +214,57 @@ export default {
 .custom-icon,
 .v-icon {
     width: 12px;
+}
+
+.ol-overlay.menu {
+    width: 30%;
+    background: #fff;
+    color: #333;
+    box-shadow: 0 0 5px #000;
+    padding: 0.5em;
+    -webkit-transition: all 0.25s;
+    transition: all 0.25s;
+}
+/* style the close box */
+.ol-overlay.menu .ol-closebox {
+    color: #369;
+    left: 1em;
+    top: 0.5em;
+}
+.ol-overlay.menu .ol-closebox:before {
+    content: "\f0c9";
+    font-family: FontAwesome;
+}
+#menu {
+    padding-top: 1.5em;
+    font-size: 0.9em;
+}
+/* menu button */
+.ol-control.menu {
+    top: 0.5em;
+    left: 0.5em;
+}
+.ol-control.menu i {
+    color: #fff;
+}
+.ol-zoom {
+    left: auto;
+    right: 0.5em;
+}
+.ol-rotate {
+    right: 3em;
+}
+.ol-touch .ol-rotate {
+    right: 3.5em;
+}
+/**/
+.ol-overlay img {
+    max-width: 90%;
+}
+.data,
+.data p {
+    margin: 0;
+    text-align: center;
+    font-size: 0.9em;
 }
 </style>
