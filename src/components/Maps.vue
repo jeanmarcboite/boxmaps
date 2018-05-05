@@ -174,6 +174,11 @@ export default {
 @import 'ol-ext/control/Search.css';
 @import 'ol-ext/control/Bar.css';
 @import 'ol-ext/control/LayerSwitcher.css';
+.map {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+}
 .ol-control.ol-layerswitcher-no {
     left: 0.5em;
     right: auto;
