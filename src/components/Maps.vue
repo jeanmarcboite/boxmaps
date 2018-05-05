@@ -190,6 +190,7 @@ export default {
 }
 .ol-control.ol-layerswitcher {
     top: 0.5em;
+    right: 4em;
 }
 /* Bar style */
 .ol-control.ol-bar {
@@ -254,7 +255,7 @@ export default {
 }
 .ol-zoom {
     left: auto;
-    right: 0.5em;
+    right: 1.5em;
 }
 .ol-rotate {
     right: 3em;
