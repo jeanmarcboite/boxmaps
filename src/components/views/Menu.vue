@@ -1,17 +1,11 @@
 <template>
 <div id="menu">
-  <h1>Menu</h1>
-  <p style="border-bottom:1px solid #999;">
-    <i>ol.control.Overlay</i> can be used to display a menu or information on the top of the map.
-  </p>
+  <h1><span v-html='title'/></h1>
+  <p style="border-bottom:1px solid #999;" v-html='subtitle' />
   <v-expansion-panel>
-    <v-expansion-panel-content v-for="(item,i) in 5" :key="i">
-      <div slot="header">Item
-        </v-icon>
-      </div>
-      <v-card>
-        <v-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-card-text>
-      </v-card>
+    <v-expansion-panel-content v-for='(item,i) in menu' :key="i">
+      <div slot='header' v-html='item.title' />
+      <span v-html='item.content' />
     </v-expansion-panel-content>
   </v-expansion-panel>
   <div class="data"></div>
@@ -23,6 +17,21 @@ export default {
   data() {
     return {
       title: 'Menu',
+      subtitle: '<i>Menu</i> can be used to display a menu or information on the top of the map.',
+      menu: [
+        {
+          title: 'Item 1',
+          content: `
+      <v-card>
+        <v-card-text>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-card-text>
+      </v-card>
+          `
+        },
+        {
+          title: 'Tracks',
+          content: 'Blood on the tracks'
+        }
+      ]
     }
   },
 }
