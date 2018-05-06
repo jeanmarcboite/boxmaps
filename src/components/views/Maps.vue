@@ -4,6 +4,7 @@
   <div id="map" class="map" />
   <VToolbar :controls="controls" />
   <input type="file" id="inputFile" accept=".gpx" multiple style="display:none;" />
+  <VToolbar :controls="controls" openId='inputFile' saveId='saveFile' />
 </div>
 </template>
 
@@ -60,13 +61,21 @@ export default {
     ...mapGetters(['zoom', 'center'])
   },
   methods: {
-    ...mapMutations(['addTrack'])
+    ...mapMutations(['addTrack']),
+    addButton: function (button) {
+      const newButton = new Button({
+        html: button.html,
+        title: button.title,
+        handleClick: button.handleClick
+      })
+      newButton.element.classList.add(button.class)
+      this.map.addControl(newButton)
+    }
   },
   beforeMount: function () {
     console.log('Maps beforeMount')
   },
   mounted: function () {
-    console.log('Maps mounted: ' + this.map)
     const this_ = this
     this.map = new Map({
       interactions: interaction.defaults().extend([dragAndDropInteraction]),
@@ -104,16 +113,24 @@ export default {
       store: this.$store,
       map: this.map
     })
+    toolBar.setVisible(false)
 
-    const wrench = new Button({
-      html: '<i class="fa fa-wrench"></i>',
-      title: 'Toggle toolbar',
-      handleClick: function () {
-        toolBar.setVisible(!toolBar.getVisible())
+    const buttons = [
+      {
+        title: 'draw a new track',
+        html: '<i class="fa fa-file"></i>',
+        class: 'ol-new-track',
+        handleClick: function () {
+          toolBar.setVisible(!toolBar.getVisible())
+        }
+      },
+      {
+        title: 'search options',
+        html: '<i class="fa fa-cog"></i>',
+        class: 'ol-search-options',
+        handleClick: function () {}
       }
-    })
-    wrench.element.classList.add('ol-wrench')
-    this.map.addControl(wrench)
+    ].forEach(this.addButton)
 
     const profile = new Button({
       html: '<i class="fa fas fa-map-signs"></i>',
@@ -194,15 +211,20 @@ export default {
 }
 /* Bar style */
 .ol-control.ol-bar {
-    top: 0.5em;
+    top: 2.5em;
     left: 6em;
+}
+.ol-search-options {
+    position: absolute;
+    top: 0.5em;
+    left: 2.5em;
 }
 .ol-search {
     position: absolute;
-    top: 2.5em;
-    left: 2.7em;
+    top: 0.5em;
+    left: 3.5em;
 }
-.ol-wrench {
+.ol-new-track {
     position: absolute;
     left: 0.5em;
     top: 2.5em;
