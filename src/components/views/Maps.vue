@@ -1,8 +1,9 @@
 <template>
 <div class="app">
   <Menu :map="map" />
-  <input type="file" id="inputFile" accept=".gpx" multiple style="display:none;" />
   <div id="map" class="map" />
+  <VToolbar :controls="controls" />
+  <input type="file" id="inputFile" accept=".gpx" multiple style="display:none;" />
 </div>
 </template>
 
@@ -36,11 +37,14 @@ import projection from '@/assets/projection'
 import addTracks from '@/components/ol/addtracks'
 
 import Menu from './Menu.vue'
+import VToolbar from './VToolbar.vue'
+import readFiles from '@/components/ol/readfiles'
 
 export default {
   name: 'Map',
   components: {
-    Menu
+    Menu,
+    VToolbar
   },
   data() {
     return {
@@ -48,7 +52,8 @@ export default {
       direction: 'vertical',
       right: true,
       drawer: false,
-      map: undefined
+      map: undefined,
+      controls: []
     }
   },
   computed: {
@@ -57,7 +62,11 @@ export default {
   methods: {
     ...mapMutations(['addTrack'])
   },
+  beforeMount: function () {
+    console.log('Maps beforeMount')
+  },
   mounted: function () {
+    console.log('Maps mounted: ' + this.map)
     const this_ = this
     this.map = new Map({
       interactions: interaction.defaults().extend([dragAndDropInteraction]),
@@ -68,6 +77,7 @@ export default {
         zoom: this.zoom
       })
     })
+    this.controls.forEach(control => this.map.addControl(control))
     this.map.addControl(new Scaleline())
 
     this.map.addControl(new LayerSwitcher({
@@ -99,7 +109,7 @@ export default {
       html: '<i class="fa fa-wrench"></i>',
       title: 'Toggle toolbar',
       handleClick: function () {
-        // toolBar.setVisible(!toolBar.getVisible())
+        toolBar.setVisible(!toolBar.getVisible())
       }
     })
     wrench.element.classList.add('ol-wrench')
@@ -124,12 +134,12 @@ export default {
       width: 400,
       height: 200
     })
-    this.map.addControl(this.map.profil)
+    // this.map.addControl(this.map.profil)
 
     addTracks(this.map, this.$store.state.tracks)
 
-    const trackSwitcher = new TrackSwitcher()
-    this.map.addControl(trackSwitcher)
+    // const trackSwitcher = new TrackSwitcher()
+    // this.map.addControl(trackSwitcher)
 
     // Menu overlay
     const menu = new Overlay({
@@ -149,6 +159,10 @@ export default {
       }
     })
     this.map.addControl(menuToggle)
+    document.getElementById('inputTrack').onchange = readFiles({
+      map: this.map,
+      store: this.$store
+    })
   }
 }
 </script>
@@ -191,7 +205,7 @@ export default {
 .ol-wrench {
     position: absolute;
     left: 0.5em;
-    top: 4em;
+    top: 2.5em;
 }
 .ol-profile {
     position: absolute;

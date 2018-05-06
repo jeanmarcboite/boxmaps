@@ -25,7 +25,7 @@ function Toolbar(options) {
 
   const readButton = new Button({
     html: '<i class="fa fa-folder-open"></i>',
-    title: 'Read track file',
+    title: 'X Read track file',
     handleClick: function () {
       document.getElementById('inputFile').click()
     }
