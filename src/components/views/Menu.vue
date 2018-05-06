@@ -3,23 +3,26 @@
   <h1><span v-html='title'/></h1>
   <p style="border-bottom:1px solid #999;" v-html='subtitle' />
   <v-expansion-panel>
-    <v-expansion-panel-content v-for='(item,i) in menu' :key="i">
+    <v-expansion-panel-content v-for='item in menu' :key="item.id" @input='onInput($event, item)'>
       <div slot='header' v-html='item.title' />
-      <span v-html='item.content' />
+      <div v-html='item.content' :id='"expansionPanelContent" + item.id' />
     </v-expansion-panel-content>
   </v-expansion-panel>
   <div class="data"></div>
 </div>
 </template>
 <script>
+import listTracks from '@/components/ol/listTracks'
 export default {
   name: 'Menu',
+  props: ['map'],
   data() {
     return {
       title: 'Menu',
       subtitle: '<i>Menu</i> can be used to display a menu or information on the top of the map.',
       menu: [
         {
+          id: 'lorem',
           title: 'Item 1',
           content: `
       <v-card>
@@ -28,12 +31,21 @@ export default {
           `
         },
         {
+          id: 'tracks',
           title: 'Tracks',
-          content: 'Blood on the tracks'
+          content: '<ul id="trackList"/>'
         }
       ]
     }
   },
+  methods: {
+    onInput(isOpen, item) {
+      item.isOpen = isOpen
+      if (item.isOpen) {
+        listTracks(this.map, this.map, document.getElementById('trackList'))
+      }
+    }
+  }
 }
 </script>
 

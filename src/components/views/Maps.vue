@@ -1,6 +1,6 @@
 <template>
 <div class="app">
-  <Menu/>
+  <Menu :map="map" />
   <input type="file" id="inputFile" accept=".gpx" multiple style="display:none;" />
   <div id="map" class="map" />
 </div>
