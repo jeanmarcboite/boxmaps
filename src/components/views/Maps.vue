@@ -9,9 +9,6 @@
 <script>
 import Map from 'ol/map'
 import View from 'ol/view'
-import Scaleline from 'ol/control/scaleline'
-import SearchNominatim from 'ol-ext/control/SearchNominatim'
-import LayerSwitcher from 'ol-ext/control/LayerSwitcher'
 import Button from 'ol-ext/control/Button'
 import Toggle from 'ol-ext/control/Toggle'
 import Overlay from 'ol-ext/control/Overlay'
@@ -29,7 +26,6 @@ import dragAndDropInteraction from '@/components/ol/dndInteraction'
 import Profil from 'ol-ext/control/Profile'
 import Group from 'ol/layer/group'
 import VectorLayer from 'ol/layer/vector'
-import TrackSwitcher from '@/components/ol/TrackSwitcher'
 import projection from '@/assets/projection'
 
 import addTracks from '@/components/ol/addtracks'
@@ -37,6 +33,7 @@ import addTracks from '@/components/ol/addtracks'
 import Menu from './Menu.vue'
 import readFiles from '@/components/ol/readfiles'
 import toolbars from './toolbars'
+import addControls from './controls'
 
 export default {
   name: 'Map',
@@ -79,49 +76,21 @@ export default {
         zoom: this.zoom
       })
     })
-    this.controls.forEach(control => this.map.addControl(control))
-    this.map.addControl(new Scaleline())
 
-    this.map.addControl(new LayerSwitcher({
-      trash: true,
-      extent: true
-    }))
-
-    const search = new SearchNominatim()
-    search.on('select', function (e) {
-      this_.map.getView().animate({
-        center: e.coordinate,
-        zoom: Math.max(this_.map.getView().getZoom(), 13)
-      })
-    })
-    this.map.addControl(search)
     this.map.on('moveend', function (event) {
       store.commit('setView', {
         zoom: event.map.getView().getZoom(),
         center: event.map.getView().getCenter()
       })
     })
+
     const [vBar, hBar] = toolbars(this.map, {
       saveId: 'saveFile',
       openId: 'openFile'
     })
-
-    const buttons = [
-      {
-        title: 'draw a new track',
-        html: '<i class="fa fa-file"></i>',
-        class: 'ol-new-track',
-        handleClick: function () {
-          hBar.setVisible(!hBar.getVisible())
-        }
-      },
-      {
-        title: 'search options',
-        html: '<i class="fa fa-cog"></i>',
-        class: 'ol-search-options',
-        handleClick: function () {}
-      }
-    ].forEach(this.addButton)
+    addControls(this.map, {
+      hBar
+    })
 
     const profile = new Button({
       html: '<i class="fa fas fa-map-signs"></i>',
@@ -149,24 +118,6 @@ export default {
     // const trackSwitcher = new TrackSwitcher()
     // this.map.addControl(trackSwitcher)
 
-    // Menu overlay
-    const menu = new Overlay({
-      closeBox: true,
-      className: 'slide-left menu',
-      content: document.getElementById('menu')
-    })
-    this.map.addControl(menu)
-
-    // A toggle control to show/hide the menu
-    const menuToggle = new Toggle({
-      html: '<i class="fa fa-bars"></i>',
-      className: 'menu',
-      title: 'Menu',
-      onToggle: function () {
-        menu.toggle()
-      }
-    })
-    this.map.addControl(menuToggle)
     document.getElementById('openFile').onchange = readFiles({
       map: this.map,
       store: this.$store
@@ -218,6 +169,11 @@ export default {
 .ol-new-track {
     position: absolute;
     left: 0.5em;
+    top: 2.5em;
+}
+.ol-zoom {
+    left: auto;
+    right: 0.5em;
     top: 2.5em;
 }
 .ol-profile {

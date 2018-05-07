@@ -89,11 +89,6 @@ export default {
   color: #fff;
 }
 
-.ol-zoom {
-  left: auto;
-  right: 1.5em;
-}
-
 .ol-rotate {
   right: 3em;
 }
