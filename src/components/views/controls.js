@@ -15,7 +15,7 @@ const newButton = function(options) {
 }
 
 const controls = function(map, options) {
-  const buttons = [
+  [
     {
       title: 'draw a new track',
       html: '<i class="fa fa-file"></i>',

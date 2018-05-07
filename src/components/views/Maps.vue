@@ -10,8 +10,6 @@
 import Map from 'ol/map'
 import View from 'ol/view'
 import Button from 'ol-ext/control/Button'
-import Toggle from 'ol-ext/control/Toggle'
-import Overlay from 'ol-ext/control/Overlay'
 import interaction from 'ol/interaction'
 import {
   mapGetters,
@@ -20,12 +18,9 @@ import {
 
 import layers from '@/components/layers'
 import store from '@/store'
-import GPX from 'ol/format/gpx'
 
 import dragAndDropInteraction from '@/components/ol/dndInteraction'
 import Profil from 'ol-ext/control/Profile'
-import Group from 'ol/layer/group'
-import VectorLayer from 'ol/layer/vector'
 import projection from '@/assets/projection'
 
 import addTracks from '@/components/ol/addtracks'

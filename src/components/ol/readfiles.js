@@ -4,7 +4,6 @@ import style from './style'
 import VectorLayer from 'ol/layer/vector'
 import Point from 'ol/geom/point'
 import Feature from 'ol/feature'
-
 import projection from '@/assets/projection'
 
 const readFeatures = function(event, options) {
@@ -23,8 +22,6 @@ const readFeatures = function(event, options) {
 const readFeaturesOnLoad = (options) => (event) => readFeatures(event, options)
 
 const readFeaturesFiles = function(event, options) {
-  const format = new GPX()
-
   for (let file of event.target.files) {
     const reader = new FileReader()
     reader.readAsText(file, 'UTF-8')

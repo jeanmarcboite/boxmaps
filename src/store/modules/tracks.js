@@ -1,4 +1,3 @@
-import GPX from 'ol/format/gpx'
 import Group from 'ol/layer/group'
 import VectorLayer from 'ol/layer/vector'
 import projection from '@/assets/projection'
