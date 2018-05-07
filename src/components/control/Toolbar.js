@@ -28,7 +28,6 @@ function Toolbar(options) {
     options.toggleButtons.forEach(button => this.addControl(newToggleButton(button)))
     this.addControl(leftToolBar)
   }
-  console.log('adding buttons')
   options.buttons.forEach(button => this.addControl(newButton(button)))
   if (options.position) {
     this.setPosition(options.position)

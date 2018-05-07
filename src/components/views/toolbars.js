@@ -33,12 +33,9 @@ const toolbars = function(map, options) {
   ]
   const buttons = []
 
-  console.log('vbar')
   const vBar = new Toolbar({buttons: verticalButtons, position: 'top-left'})
-  console.log('vbar')
   map.addControl(vBar)
 
-  console.log('hbar')
   const hBar = new Toolbar({buttons, toggleButtons})
   hBar.setVisible(false)
   map.addControl(hBar)

@@ -71,9 +71,6 @@ export default {
       this.map.addControl(newButton)
     }
   },
-  beforeMount: function () {
-    console.log('Maps beforeMount')
-  },
   mounted: function () {
     const this_ = this
     this.map = new Map({
