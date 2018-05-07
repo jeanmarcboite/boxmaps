@@ -26,7 +26,6 @@ import store from '@/store'
 import GPX from 'ol/format/gpx'
 
 import dragAndDropInteraction from '@/components/ol/dndInteraction'
-import Toolbar from '@/components/ol/toolbar'
 import Profil from 'ol-ext/control/Profile'
 import Group from 'ol/layer/group'
 import VectorLayer from 'ol/layer/vector'
@@ -36,7 +35,6 @@ import projection from '@/assets/projection'
 import addTracks from '@/components/ol/addtracks'
 
 import Menu from './Menu.vue'
-import VToolbar from './VToolbar.vue'
 import readFiles from '@/components/ol/readfiles'
 import toolbars from './toolbars'
 
@@ -44,7 +42,6 @@ export default {
   name: 'Map',
   components: {
     Menu,
-    VToolbar
   },
   data() {
     return {
