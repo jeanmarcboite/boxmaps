@@ -18,6 +18,13 @@ const newButton = function(options) {
 const controls = function(map, options) {
   [
     {
+      title: 'menu',
+      html: '<i class="fa fa-bars"></i>',
+      class: 'ol-menu',
+      handleClick: function() {
+        options.hBar.setVisible(!options.hBar.getVisible())
+      }
+    }, {
       title: 'draw a new track',
       html: '<i class="fa fa-file"></i>',
       class: 'ol-new-track',
@@ -57,6 +64,7 @@ const controls = function(map, options) {
   map.addControl(menu)
 
   // A toggle control to show/hide the menu
+  /*
   const menuToggle = new Toggle({
     html: '<i class="fa fa-wrench"></i>',
     className: 'menu',
@@ -66,6 +74,7 @@ const controls = function(map, options) {
     }
   })
   map.addControl(menuToggle)
+  */
 }
 
 export default controls

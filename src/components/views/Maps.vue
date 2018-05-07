@@ -134,6 +134,10 @@ export default {
     height: 100%;
     position: fixed;
 }
+.ol-menu {
+    left: 0.5em;
+    top: 0.5em;
+}
 .ol-control.ol-layerswitcher-no {
     left: 0.5em;
     right: auto;
