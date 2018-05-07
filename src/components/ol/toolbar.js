@@ -9,12 +9,7 @@ import VectorLayer from 'ol/layer/vector'
 import FullScreen from 'ol/control/fullscreen'
 import Button from 'ol-ext/control/Button'
 import readFiles from '@/components/ol/readfiles'
-
-function IconToggle(options) {
-  options.html = '<i class="' + options.icon + '"></i>'
-  Toggle.call(this, options)
-}
-ol.inherits(IconToggle, Toggle)
+import IconToggle from '@/components/control/ToggleButton'
 
 function Toolbar(options) {
   if (process.env.NODE_ENV !== 'production' && !(this instanceof Toolbar)) {

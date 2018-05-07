@@ -2,9 +2,7 @@
 <div class="app">
   <Menu :map="map" />
   <div id="map" class="map" />
-  <VToolbar :controls="controls" />
-  <input type="file" id="inputFile" accept=".gpx" multiple style="display:none;" />
-  <VToolbar :controls="controls" openId='inputFile' saveId='saveFile' />
+  <input type="file" id="openFile" accept=".gpx" multiple style="display:none;" />
 </div>
 </template>
 
@@ -40,6 +38,7 @@ import addTracks from '@/components/ol/addtracks'
 import Menu from './Menu.vue'
 import VToolbar from './VToolbar.vue'
 import readFiles from '@/components/ol/readfiles'
+import toolbars from './toolbars'
 
 export default {
   name: 'Map',
@@ -108,12 +107,11 @@ export default {
         center: event.map.getView().getCenter()
       })
     })
-
-    const toolBar = new Toolbar({
-      store: this.$store,
-      map: this.map
+    console.log('add toolbars')
+    const [vBar, hBar] = toolbars(this.map, {
+      saveId: 'saveFile',
+      openId: 'openFile'
     })
-    toolBar.setVisible(false)
 
     const buttons = [
       {
@@ -121,7 +119,7 @@ export default {
         html: '<i class="fa fa-file"></i>',
         class: 'ol-new-track',
         handleClick: function () {
-          toolBar.setVisible(!toolBar.getVisible())
+          hBar.setVisible(!hBar.getVisible())
         }
       },
       {
@@ -176,7 +174,7 @@ export default {
       }
     })
     this.map.addControl(menuToggle)
-    document.getElementById('inputTrack').onchange = readFiles({
+    document.getElementById('openFile').onchange = readFiles({
       map: this.map,
       store: this.$store
     })
@@ -222,7 +220,7 @@ export default {
 .ol-search {
     position: absolute;
     top: 0.5em;
-    left: 3.5em;
+    left: 4.5em;
 }
 .ol-new-track {
     position: absolute;
