@@ -16,13 +16,21 @@ const newButton = function(options) {
 }
 
 const controls = function(map, options) {
-  [
+  // Menu overlay
+  const menu = new Overlay({
+    closeBox: true,
+    className: 'slide-left menu',
+    content: document.getElementById('menu')
+  })
+  map.addControl(menu)
+
+  const buttons = [
     {
       title: 'menu',
       html: '<i class="fa fa-bars"></i>',
       class: 'ol-menu',
       handleClick: function() {
-        options.hBar.setVisible(!options.hBar.getVisible())
+        menu.toggle()
       }
     }, {
       title: 'draw a new track',
@@ -31,7 +39,7 @@ const controls = function(map, options) {
       handleClick: function() {
         options.hBar.setVisible(!options.hBar.getVisible())
       }
-/*
+      /*
     }, {
       title: 'search options',
       html: '<i class="fa fa-cog"></i>',
@@ -39,15 +47,14 @@ const controls = function(map, options) {
       handleClick: function() {}
       */
     }
-  ].forEach(button => map.addControl(newButton(button)))
+  ]
+  buttons.forEach(button => map.addControl(newButton(button)))
 
   map.addControl(new Scaleline())
   map.addControl(new Fullscreen())
 
   map.addControl(new LayerSwitcher({trash: true, extent: true}))
-  const bm = new GeoBookmark({
-    marks: options.bookmarks
-  })
+  const bm = new GeoBookmark({marks: options.bookmarks})
   map.addControl(bm)
 
   const search = new SearchNominatim()
@@ -58,10 +65,6 @@ const controls = function(map, options) {
     })
   })
   map.addControl(search)
-
-  // Menu overlay
-  const menu = new Overlay({closeBox: true, className: 'slide-left menu', content: document.getElementById('menu')})
-  map.addControl(menu)
 
   // A toggle control to show/hide the menu
   /*
