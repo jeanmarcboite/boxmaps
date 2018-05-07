@@ -58,7 +58,7 @@ const controls = function(map, options) {
 
   // A toggle control to show/hide the menu
   const menuToggle = new Toggle({
-    html: '<i class="fa fa-align-justify"></i>',
+    html: '<i class="fa fa-wrench"></i>',
     className: 'menu',
     title: 'Menu',
     onToggle: function() {
