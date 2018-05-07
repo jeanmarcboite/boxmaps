@@ -88,7 +88,7 @@ export default {
     })
 
     const profile = new Button({
-      html: '<i class="fa fas fa-map-signs"></i>',
+      html: '<i class="fa fa-map-signs"></i>',
       // html: '<i class="fa fa-bars"></i>',
       title: 'Toggle toolbar',
       handleClick: function (event) {
