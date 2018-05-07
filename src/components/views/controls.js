@@ -30,6 +30,7 @@ const controls = function(map, options) {
       html: '<i class="fa fa-bars"></i>',
       class: 'ol-menu',
       handleClick: function() {
+        console.log('menu toggle')
         menu.toggle()
       }
     }, {
