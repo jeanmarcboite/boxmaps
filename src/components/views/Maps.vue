@@ -104,7 +104,6 @@ export default {
         center: event.map.getView().getCenter()
       })
     })
-    console.log('add toolbars')
     const [vBar, hBar] = toolbars(this.map, {
       saveId: 'saveFile',
       openId: 'openFile'
