@@ -4,6 +4,7 @@ import createLogger from 'vuex/dist/logger'
 import settings from './modules/settings'
 import layers from './modules/layers'
 import tracks from './modules/tracks'
+import bookmarks from './modules/bookmarks'
 import VuexPersist from 'vuex-persist'
 
 const vuexStorage = new VuexPersist({
@@ -31,6 +32,7 @@ const store = new Vuex.Store({
   modules: {
     layers,
     tracks,
+    bookmarks,
     settings
   },
   state,

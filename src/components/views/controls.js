@@ -7,8 +7,6 @@ import Toggle from 'ol-ext/control/Toggle'
 import Overlay from 'ol-ext/control/Overlay'
 import GeoBookmark from 'ol-ext/control/GeoBookmark'
 
-import POI from '@/assets/poi'
-
 const newButton = function(options) {
   const button = new Button({html: options.html, title: options.title, handleClick: options.handleClick})
   if (options.class) {
@@ -41,46 +39,7 @@ const controls = function(map, options) {
 
   map.addControl(new LayerSwitcher({trash: true, extent: true}))
   const bm = new GeoBookmark({
-    marks: {
-      Faycelles: {
-        pos: POI.Faycelles,
-        zoom: 15,
-        permanent: true
-      },
-      Paris: {
-        pos: POI.Paris,
-        zoom: 11,
-        permanent: true
-      },
-      London: {
-        pos: POI.London,
-        zoom: 11,
-        permanent: true
-      },
-      Geneve: {
-        pos: POI.Geneve,
-        zoom: 13,
-        permanent: true
-      },
-      Bruxelles: {
-        pos: POI.Bruxelles,
-        zoom: 12,
-        permanent: true
-      },
-      Berlin: {
-        pos: POI.Berlin,
-        zoom: 12,
-        permanent: true
-      },
-      Madrid: {
-        pos: POI.Madrid,
-        zoom: 12
-      },
-      Roma: {
-        pos: POI.Roma,
-        zoom: 12
-      }
-    }
+    marks: options.bookmarks
   })
   map.addControl(bm)
 
