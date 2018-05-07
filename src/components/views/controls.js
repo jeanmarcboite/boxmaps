@@ -5,6 +5,9 @@ import LayerSwitcher from 'ol-ext/control/LayerSwitcher'
 import Button from 'ol-ext/control/Button'
 import Toggle from 'ol-ext/control/Toggle'
 import Overlay from 'ol-ext/control/Overlay'
+import GeoBookmark from 'ol-ext/control/GeoBookmark'
+
+import POI from '@/assets/poi'
 
 const newButton = function(options) {
   const button = new Button({html: options.html, title: options.title, handleClick: options.handleClick})
@@ -23,11 +26,13 @@ const controls = function(map, options) {
       handleClick: function() {
         options.hBar.setVisible(!options.hBar.getVisible())
       }
+/*
     }, {
       title: 'search options',
       html: '<i class="fa fa-cog"></i>',
       class: 'ol-search-options',
       handleClick: function() {}
+      */
     }
   ].forEach(button => map.addControl(newButton(button)))
 
@@ -35,6 +40,49 @@ const controls = function(map, options) {
   map.addControl(new Fullscreen())
 
   map.addControl(new LayerSwitcher({trash: true, extent: true}))
+  const bm = new GeoBookmark({
+    marks: {
+      Faycelles: {
+        pos: POI.Faycelles,
+        zoom: 15,
+        permanent: true
+      },
+      Paris: {
+        pos: POI.Paris,
+        zoom: 11,
+        permanent: true
+      },
+      London: {
+        pos: POI.London,
+        zoom: 11,
+        permanent: true
+      },
+      Geneve: {
+        pos: POI.Geneve,
+        zoom: 13,
+        permanent: true
+      },
+      Bruxelles: {
+        pos: POI.Bruxelles,
+        zoom: 12,
+        permanent: true
+      },
+      Berlin: {
+        pos: POI.Berlin,
+        zoom: 12,
+        permanent: true
+      },
+      Madrid: {
+        pos: POI.Madrid,
+        zoom: 12
+      },
+      Roma: {
+        pos: POI.Roma,
+        zoom: 12
+      }
+    }
+  })
+  map.addControl(bm)
 
   const search = new SearchNominatim()
   search.on('select', function(e) {
@@ -46,11 +94,7 @@ const controls = function(map, options) {
   map.addControl(search)
 
   // Menu overlay
-  const menu = new Overlay({
-    closeBox: true,
-    className: 'slide-left menu',
-    content: document.getElementById('menu')
-  })
+  const menu = new Overlay({closeBox: true, className: 'slide-left menu', content: document.getElementById('menu')})
   map.addControl(menu)
 
   // A toggle control to show/hide the menu
@@ -58,7 +102,7 @@ const controls = function(map, options) {
     html: '<i class="fa fa-bars"></i>',
     className: 'menu',
     title: 'Menu',
-    onToggle: function () {
+    onToggle: function() {
       menu.toggle()
     }
   })

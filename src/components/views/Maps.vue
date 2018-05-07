@@ -128,6 +128,7 @@ export default {
 @import 'ol-ext/control/Search.css';
 @import 'ol-ext/control/Bar.css';
 @import 'ol-ext/control/LayerSwitcher.css';
+@import 'ol-ext/control/GeoBookmark.css';
 .map {
     width: 100%;
     height: 100%;
@@ -153,6 +154,10 @@ export default {
 }
 .ol-search-options {
     position: absolute;
+    top: 0.5em;
+    left: 2.5em;
+}
+.ol-control.ol-bookmark {
     top: 0.5em;
     left: 2.5em;
 }
