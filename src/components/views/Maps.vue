@@ -42,7 +42,8 @@ export default {
       title: 'Maps',
       direction: 'vertical',
       right: true,
-      drawer: false,
+      drawer: true,
+      miniVariant: false,
       map: undefined,
       controls: []
     }
@@ -86,7 +87,8 @@ export default {
       openId: 'openFile'
     })
     addControls(this.map, {
-      hBar
+      hBar,
+      store
     })
 
     const profile = new Button({

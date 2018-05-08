@@ -16,22 +16,13 @@ const newButton = function(options) {
 }
 
 const controls = function(map, options) {
-  // Menu overlay
-  const menu = new Overlay({
-    closeBox: true,
-    className: 'slide-left menu',
-    content: document.getElementById('menu')
-  })
-  map.addControl(menu)
-
   const buttons = [
     {
       title: 'menu',
       html: '<i class="fa fa-bars"></i>',
       class: 'ol-menu',
       handleClick: function() {
-        console.log('menu toggle')
-        menu.toggle()
+        options.store.commit('setDrawer', true)
       }
     }, {
       title: 'draw a new track',

@@ -1,21 +1,38 @@
 <template>
 <div id="menu">
-  <h1><span v-html='title'/></h1>
-  <p style="border-bottom:1px solid #999;" v-html='subtitle' />
-  <v-expansion-panel>
-    <v-expansion-panel-content v-for='item in menu' :key="item.id" @input='onInput($event, item)'>
-      <div slot='header' v-html='item.title' />
-      <div v-html='item.content' :id='"expansionPanelContent" + item.id' />
-    </v-expansion-panel-content>
-  </v-expansion-panel>
-  <div class="data"></div>
+  <v-navigation-drawer temporary :mini-variant="miniVariant" v-model="drawer" enable-resize-watcher fixed app>
+    <h1><span v-html='title'/></h1>
+    <p style="border-bottom:1px solid #999;" v-html='subtitle' />
+    <v-expansion-panel>
+      <v-expansion-panel-content v-for='item in menu' :key="item.id" @input='onInput($event, item)'>
+        <div slot='header' v-html='item.title' />
+        <div v-html='item.content' :id='"expansionPanelContent" + item.id' />
+      </v-expansion-panel-content>
+    </v-expansion-panel>
+    <div class="data"></div>
+  </v-navigation-drawer>
 </div>
 </template>
 <script>
+import {
+  mapGetters,
+  mapMutations
+} from 'vuex'
 import listTracks from '@/components/ol/listTracks'
 export default {
   name: 'Menu',
   props: ['map'],
+  computed: {
+    ...mapGetters(['miniVariant']),
+    drawer: {
+      get: function () {
+        return this.$store.state.settings.drawer
+      },
+      set: function (value) {
+        this.$store.commit('setDrawer', value)
+      }
+    }
+  },
   data() {
     return {
       title: 'Menu',
