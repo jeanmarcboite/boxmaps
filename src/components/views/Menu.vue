@@ -28,18 +28,7 @@ export default {
   name: 'Menu',
   props: ['map'],
   computed: {
-    ...mapGetters({
-      drawerValue: 'drawer'
-    }),
     ...sync('ui/', ['drawer']),
-    drawerss: {
-      get: function () {
-        return this.drawerValue
-      },
-      set: function (value) {
-        this.$store.commit('setDrawer', value)
-      }
-    }
   },
   data() {
     return {

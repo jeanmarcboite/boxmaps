@@ -22,7 +22,6 @@ const controls = function(map, options) {
       html: '<i class="fa fa-bars"></i>',
       class: 'ol-menu',
       handleClick: function() {
-        pathify.debug()
         options.store.set('ui/drawer', true)
       }
     }, {
