@@ -37,7 +37,7 @@ import {
 } from 'vuex-pathify'
 
 export default {
-  name: 'Menu',
+  name: 'Export',
   props: ['map'],
   computed: {
     ...sync('ui/', ['exportDialog'])
