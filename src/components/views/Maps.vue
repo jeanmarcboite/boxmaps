@@ -26,16 +26,16 @@ import {
 import layers from '@/components/layers'
 import store from '@/store'
 
-import dragAndDropInteraction from '@/components/ol/dndInteraction'
+import dragAndDropInteraction from '@/ol/dndInteraction'
 import Profil from 'ol-ext/control/Profile'
 import projection from '@/assets/projection'
 
-import addTracks from '@/components/ol/addtracks'
+import addTracks from '@/ol/layer/addtracks'
 
 import Menu from './Menu.vue'
 import Export from './Export.vue'
 import Tracks from './Tracks.vue'
-import readFiles from '@/components/ol/readfiles'
+import readFiles from '@/ol/layer/readfiles'
 import toolbars from './toolbars'
 import addControls from './controls'
 
@@ -141,7 +141,7 @@ export default {
 
 <style lang="scss">
 @import "ol/ol.css";
-@import "../ol/TrackSwitcher.css";
+@import "../../ol/TrackSwitcher.css";
 @import "ol-ext/dist/ol-ext.css";
 @import 'ol-ext/control/Search.css';
 @import 'ol-ext/control/Bar.css';

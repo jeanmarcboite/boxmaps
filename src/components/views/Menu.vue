@@ -25,7 +25,7 @@ import {
   mapMutations
 } from 'vuex'
 
-import listTracks from '@/components/ol/listTracksInDOM'
+import listTracks from '@/ol/listTracksInDOM'
 import {
   sync
 } from 'vuex-pathify'

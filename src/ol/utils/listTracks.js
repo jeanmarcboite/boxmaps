@@ -1,5 +1,5 @@
 import Group from 'ol/layer/group'
-import TrackLayer from '@/components/ol/layer/Track'
+import TrackLayer from '@/ol/layer/Track'
 
 const listTracks_ = function(group, tracks) {
   group.getLayers().forEach(layer => listTrack(layer, tracks))

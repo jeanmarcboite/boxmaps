@@ -4,7 +4,7 @@ import VectorSource from 'ol/source/vector'
 import VectorLayer from 'ol/layer/vector'
 
 import Toolbar from '@/components/control/Toolbar'
-import style from '@/components/ol/style'
+import style from '@/ol/layer/style'
 
 const toolbars = function(map, options) {
   const verticalButtons = [

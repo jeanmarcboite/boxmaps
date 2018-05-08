@@ -1,7 +1,7 @@
 import GeoJSON from 'ol/format/geojson'
 import VectorSource from 'ol/source/vector'
 import style from './style'
-import TrackLayer from '@/components/ol/layer/Track'
+import TrackLayer from '@/ol/layer/Track'
 import projection from '@/assets/projection'
 
 const addLayer = function (options) {

@@ -34,7 +34,7 @@ import {
   sync
 } from 'vuex-pathify'
 
-import listTracks from '@/components/ol/listTracks'
+import listTracks from '@/ol/utils/listTracks'
 
 export default {
   name: 'Tracks',
