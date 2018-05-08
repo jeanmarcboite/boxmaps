@@ -21,7 +21,9 @@ import {
 } from 'vuex'
 
 import listTracks from '@/components/ol/listTracks'
-
+import {
+  sync
+} from 'vuex-pathify'
 export default {
   name: 'Menu',
   props: ['map'],
@@ -29,7 +31,8 @@ export default {
     ...mapGetters({
       drawerValue: 'drawer'
     }),
-    drawer: {
+    ...sync('ui/', ['drawer']),
+    drawerss: {
       get: function () {
         return this.drawerValue
       },

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersist from 'vuex-persist'
 import createLogger from 'vuex/dist/logger'
-
+import pathify from 'vuex-pathify'
 import settings from './modules/settings'
 import layers from './modules/layers'
 import tracks from './modules/tracks'
@@ -28,7 +28,10 @@ const state = {
   app: 'Vuetify Map'
 }
 
-const plugins = [vuexStorage.plugin]
+const plugins = [
+  vuexStorage.plugin,
+  pathify.plugin
+]
 if (debug) {
   plugins.push(createLogger())
 }

@@ -1,3 +1,5 @@
+import { make } from 'vuex-pathify'
+
 const state = {
   drawer: false,
   exportDialog: false
@@ -12,18 +14,10 @@ const getters = {
 const actions = {
 }
 
-const mutations = {
-  setDrawer(state, value) {
-    state.drawer = value
-  },
-  setExportDialog(state, value) {
-    state.exportDialog = value
-  }
-}
-
 export default {
+  namespaced: true,
   state,
   getters,
   actions,
-  mutations
+  mutations: make.mutations(state)
 }

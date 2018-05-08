@@ -6,7 +6,7 @@ import Button from 'ol-ext/control/Button'
 import Toggle from 'ol-ext/control/Toggle'
 import Overlay from 'ol-ext/control/Overlay'
 import GeoBookmark from 'ol-ext/control/GeoBookmark'
-
+import pathify from 'vuex-pathify'
 const newButton = function(options) {
   const button = new Button({html: options.html, title: options.title, handleClick: options.handleClick})
   if (options.class) {
@@ -22,7 +22,8 @@ const controls = function(map, options) {
       html: '<i class="fa fa-bars"></i>',
       class: 'ol-menu',
       handleClick: function() {
-        options.store.commit('setDrawer', true)
+        pathify.debug()
+        options.store.set('ui/drawer', true)
       }
     }, {
       title: 'draw a new track',

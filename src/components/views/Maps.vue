@@ -104,7 +104,6 @@ export default {
       // html: '<i class="fa fa-bars"></i>',
       title: 'Toggle toolbar',
       handleClick: function (event) {
-        console.log(this_.drawer)
         event.preventDefault()
         event.stopPropagation()
       }

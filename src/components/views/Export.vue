@@ -1,16 +1,16 @@
 <template>
 <div>
-  <v-btn id="exportButton" color="primary" dark @click.native.stop="dialog = true" style="display: none;">export</v-btn>
-  <v-dialog v-model="dialog">
+  <v-btn id="exportButton" color="primary" dark @click.native.stop="exportDialog = true" style="display: none;">export</v-btn>
+  <v-dialog v-model="exportDialog">
     <v-card>
       <v-toolbar dark color="primary">
-        <v-btn icon dark @click.native="dialog = false">
+        <v-btn icon dark @click.native="exportDialog = false">
           <i class="fa fa-chevron-left"></i>'
         </v-btn>
         <v-toolbar-title>Select what to export:</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-          <v-btn dark flat @click.native="dialog = false">Export</v-btn>
+          <v-btn dark flat @click.native="exportDialog = false">Export</v-btn>
         </v-toolbar-items>
       </v-toolbar>
       <v-list-tile avatar v-for='item in exports' :key="item.key">
@@ -32,22 +32,15 @@ import {
   mapGetters,
   mapMutations
 } from 'vuex'
+import {
+  sync
+} from 'vuex-pathify'
 
 export default {
   name: 'Menu',
   props: ['map'],
   computed: {
-    ...mapGetters({
-      exportDialogValue: 'exportDialog'
-    }),
-    dialog: {
-      get: function () {
-        return this.exportDialogValue
-      },
-      set: function (value) {
-        this.$store.commit('setExportDialog', value)
-      }
-    }
+    ...sync('ui/', ['exportDialog'])
   },
   data() {
     return {

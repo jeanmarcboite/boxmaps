@@ -17,7 +17,6 @@ export default {
         icon: 'bubble_chart',
         title: 'Inspire'
       }],
-      drawer: true
     }
   },
   name: 'App'
