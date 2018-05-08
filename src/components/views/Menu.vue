@@ -29,7 +29,7 @@ export default {
     ...mapGetters(['miniVariant']),
     drawer: {
       get: function () {
-        return this.$store.state.settings.drawer
+        return this.$store.state.ui.drawer
       },
       set: function (value) {
         this.$store.commit('setDrawer', value)
@@ -65,10 +65,16 @@ export default {
   },
   methods: {
     onInput(isOpen, item) {
-      console.dir(item)
       item.isOpen = isOpen
       if (item.isOpen) {
-        listTracks(this.map, this.map, document.getElementById('trackList'))
+        switch (item.id) {
+        case 'tracks':
+          listTracks(this.map, this.map, document.getElementById('trackList'))
+          break
+        case 'settings':
+          break
+        default:
+        }
       }
     }
   }
