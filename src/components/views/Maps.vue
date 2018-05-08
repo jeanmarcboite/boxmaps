@@ -18,6 +18,9 @@ import {
   mapGetters,
   mapMutations
 } from 'vuex'
+import {
+  sync
+} from 'vuex-pathify'
 
 import layers from '@/components/layers'
 import store from '@/store'
@@ -57,7 +60,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['zoom', 'center'])
+    ...sync('settings', ['zoom', 'center'])
   },
   methods: {
     ...mapMutations(['addTrack']),
@@ -84,7 +87,7 @@ export default {
     })
 
     this.map.on('moveend', function (event) {
-      store.commit('setView', {
+      store.commit('settings/setView', {
         zoom: event.map.getView().getZoom(),
         center: event.map.getView().getCenter()
       })

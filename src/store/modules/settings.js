@@ -4,13 +4,6 @@ const state = {
   zoom: 12,
   center: POI.faycelles,
 }
-
-// getters
-const getters = {
-  zoom: state => state.zoom,
-  center: state => state.center,
-}
-
 const actions = {
 }
 
@@ -22,8 +15,8 @@ const mutations = {
 }
 
 export default {
+  namespaced: true,
   state,
-  getters,
   actions,
   mutations
 }
