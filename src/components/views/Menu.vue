@@ -26,10 +26,12 @@ export default {
   name: 'Menu',
   props: ['map'],
   computed: {
-    ...mapGetters(['miniVariant']),
+    ...mapGetters({
+      drawerValue: 'drawer'
+    }),
     drawer: {
       get: function () {
-        return this.$store.state.ui.drawer
+        return this.drawerValue
       },
       set: function (value) {
         this.$store.commit('setDrawer', value)
