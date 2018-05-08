@@ -9,7 +9,7 @@
       <v-card>
         <v-toolbar dark color="primary">
           <v-btn icon dark @click.native="dialog = false">
-            <v-icon name="fa fa-close">close</v-icon>
+            <i class="fa fa-chevron-left"></i>'
           </v-btn>
           <v-toolbar-title>Select what to export:</v-toolbar-title>
           <v-spacer></v-spacer>
