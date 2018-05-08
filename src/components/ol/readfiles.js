@@ -1,7 +1,7 @@
 import GPX from 'ol/format/gpx'
 import VectorSource from 'ol/source/vector'
 import style from './style'
-import VectorLayer from 'ol/layer/vector'
+import TrackLayer from '@/components/ol/layer/Track'
 import Point from 'ol/geom/point'
 import Feature from 'ol/feature'
 import projection from '@/assets/projection'
@@ -10,10 +10,7 @@ const readFeatures = function(event, options) {
   const format = new GPX()
   const features = format.readFeatures(event.target.result, projection)
   const source = new VectorSource({features})
-  const vectorLayer = new VectorLayer({title: options.title, source, style})
-  // copy the extent before it gets lost
-  vectorLayer.extent = source.getExtent().slice()
-  options.map.addLayer(vectorLayer)
+  options.map.addLayer(new TrackLayer({title: options.title, source, style}))
   if (options.fit) {
     options.map.getView().fit(source.getExtent())
   }

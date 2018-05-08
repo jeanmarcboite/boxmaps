@@ -1,17 +1,14 @@
 import GeoJSON from 'ol/format/geojson'
 import VectorSource from 'ol/source/vector'
 import style from './style'
-import VectorLayer from 'ol/layer/vector'
+import TrackLayer from '@/components/ol/layer/Track'
 import projection from '@/assets/projection'
 
 const addLayer = function (options) {
   const format = new GeoJSON()
   const features = format.readFeatures(options.features, projection)
   const source = new VectorSource({features})
-  const vectorLayer = new VectorLayer({title: options.title, source, style})
-  // copy the extent before it gets lost
-  vectorLayer.extent = source.getExtent().slice()
-  options.map.addLayer(vectorLayer)
+  options.map.addLayer(new TrackLayer({title: options.title, source, style}))
 }
 
 const addTracks = function(map, tracks) {
