@@ -4,6 +4,57 @@
   <div id="map" class="map" />
   <div style="display: none;">
     <input type="file" id="openFile" accept=".gpx" multiple />
+    <v-btn id="export" color="primary" dark @click.native.stop="dialog = true">Open Dialog</v-btn>
+    <v-dialog v-model="dialog">
+      <v-card>
+        <v-toolbar dark color="primary">
+          <v-btn icon dark @click.native="dialog = false">
+            <v-icon name="fa fa-close">close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Select what to export:</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-btn dark flat @click.native="dialog = false">Export</v-btn>
+          </v-toolbar-items>
+        </v-toolbar>
+        <v-list-tile avatar>
+          <v-list-tile-action>
+            <v-checkbox v-model="tracks"></v-checkbox>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Tracks</v-list-tile-title>
+            <v-list-tile-sub-title>Trails</v-list-tile-sub-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile avatar>
+          <v-list-tile-action>
+            <v-checkbox v-model="bookmarks"></v-checkbox>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Auto-add widgets</v-list-tile-title>
+            <v-list-tile-sub-title>Automatically add home screen widgets</v-list-tile-sub-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile avatar>
+          <v-list-tile-action>
+            <v-checkbox v-model="layers"></v-checkbox>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Auto-add widgets</v-list-tile-title>
+            <v-list-tile-sub-title>Automatically add home screen widgets</v-list-tile-sub-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile avatar>
+          <v-list-tile-action>
+            <v-checkbox v-model="settings"></v-checkbox>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Auto-add widgets</v-list-tile-title>
+            <v-list-tile-sub-title>Automatically add home screen widgets</v-list-tile-sub-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-card>
+    </v-dialog>
   </div>
 </div>
 </template>
@@ -43,6 +94,13 @@ export default {
       direction: 'vertical',
       right: true,
       map: undefined,
+      dialog: false,
+      sound: false,
+      widgets: true,
+      tracks: true,
+      bookmarks: true,
+      layers: false,
+      settings: false,
       controls: []
     }
   },
@@ -82,7 +140,7 @@ export default {
 
     const [vBar, hBar] = toolbars(this.map, {
       saveId: 'saveFile',
-      openId: 'openFile'
+      exportId: 'export'
     })
     addControls(this.map, {
       hBar,

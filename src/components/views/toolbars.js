@@ -14,8 +14,8 @@ const toolbars = function(map, options) {
       elementId: options.openId
     }, {
       title: 'export current track',
-      html: '<i class="fa fa-bars"></i>',
-      elementId: options.saveId
+      html: '<i class="fa fa-save"></i>',
+      elementId: options.exportId
     }
   ]
 
