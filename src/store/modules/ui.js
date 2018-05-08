@@ -8,6 +8,7 @@ const state = {
 
 export default {
   namespaced: true,
+  donotstore: true,
   state,
   mutations: make.mutations(state)
 }

@@ -1,23 +1,19 @@
 import Group from 'ol/layer/group'
 import VectorLayer from 'ol/layer/vector'
 
-const listTracks = function(map, group, tracks) {
-  group.getLayers().forEach(layer => listTrack(map, layer, tracks))
+const listTracks = function(group, tracks) {
+  const trackList = tracks || []
+  group.getLayers().forEach(layer => listTrack(layer, trackList))
+
+  return trackList
 }
 
-const listTrack = function(map, layer, tracks) {
+const listTrack = function(layer, tracks) {
   if (layer instanceof Group) {
-    listTracks(map, layer, tracks)
+    listTracks(layer, tracks)
   } else if (layer instanceof VectorLayer && layer.extent) {
-    tracks.push(liTrack(map, layer))
+    tracks.push(layer)
   }
-}
-
-const liTrack = function(map, layer) {
-  const li = {}
-  li.title = layer.get('title')
-
-  return li
 }
 
 export default listTracks
