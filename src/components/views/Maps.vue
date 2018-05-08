@@ -2,7 +2,9 @@
 <div class="app">
   <Menu :map="map" />
   <div id="map" class="map" />
-  <input type="file" id="openFile" accept=".gpx" multiple style="display:none;" />
+  <div style="display: none;">
+    <input type="file" id="openFile" accept=".gpx" multiple />
+  </div>
 </div>
 </template>
 
