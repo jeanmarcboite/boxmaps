@@ -1,7 +1,12 @@
 <template>
 <div id="menu">
   <v-navigation-drawer temporary v-model="drawer" enable-resize-watcher fixed app>
-    <h1><span v-html='title'/></h1>
+    <h1>
+        <v-btn icon @click.native="drawer = false">
+          <i class="fa fa-chevron-left"></i>'
+        </v-btn>
+      <span v-html='title'/>
+    </h1>
     <p style="border-bottom:1px solid #999;" v-html='subtitle' />
     <v-expansion-panel>
       <v-expansion-panel-content v-for='item in menu' :key="item.id" @input='onInput($event, item)'>
