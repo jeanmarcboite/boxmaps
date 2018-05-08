@@ -16,6 +16,10 @@ const toolbars = function(map, options) {
       title: 'export current track',
       html: '<i class="fa fa-save"></i>',
       elementId: options.exportId
+    }, {
+      title: 'display tracks',
+      html: '<i class="fa fa-share-alt"></i>',
+      elementId: options.tracksId
     }
   ]
 

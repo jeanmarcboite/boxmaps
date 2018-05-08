@@ -6,6 +6,7 @@
     <input type="file" id="openFile" accept=".gpx" multiple />
   </div>
   <Export/>
+  <Tracks :map="map" />
 </div>
 </template>
 
@@ -33,6 +34,7 @@ import addTracks from '@/components/ol/addtracks'
 
 import Menu from './Menu.vue'
 import Export from './Export.vue'
+import Tracks from './Tracks.vue'
 import readFiles from '@/components/ol/readfiles'
 import toolbars from './toolbars'
 import addControls from './controls'
@@ -41,7 +43,8 @@ export default {
   name: 'Map',
   components: {
     Menu,
-    Export
+    Export,
+    Tracks
   },
   data() {
     return {
@@ -95,7 +98,8 @@ export default {
 
     const [vBar, hBar] = toolbars(this.map, {
       openId: 'openFile',
-      exportId: 'exportButton'
+      exportId: 'exportButton',
+      tracksId: 'tracksButton'
     })
     addControls(this.map, {
       hBar,

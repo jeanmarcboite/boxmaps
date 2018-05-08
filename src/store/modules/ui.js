@@ -2,7 +2,8 @@ import { make } from 'vuex-pathify'
 
 const state = {
   drawer: false,
-  exportDialog: false
+  exportDialog: false,
+  tracksDialog: false
 }
 
 export default {
