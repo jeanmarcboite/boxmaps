@@ -1,12 +1,10 @@
 const state = {
   drawer: false,
-  miniVariant: false
 }
 
 // getters
 const getters = {
   drawer: state => state.drawer,
-  miniVariant: state => state.miniVariant,
 }
 
 const actions = {

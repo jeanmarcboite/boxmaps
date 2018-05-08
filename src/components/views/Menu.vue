@@ -1,6 +1,6 @@
 <template>
 <div id="menu">
-  <v-navigation-drawer temporary :mini-variant="miniVariant" v-model="drawer" enable-resize-watcher fixed app>
+  <v-navigation-drawer temporary v-model="drawer" enable-resize-watcher fixed app>
     <h1><span v-html='title'/></h1>
     <p style="border-bottom:1px solid #999;" v-html='subtitle' />
     <v-expansion-panel>
