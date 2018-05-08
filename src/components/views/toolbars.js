@@ -1,9 +1,10 @@
-import Toolbar from '@/components/control/Toolbar'
 import Select from 'ol/interaction/select'
 import Draw from 'ol/interaction/draw'
 import VectorSource from 'ol/source/vector'
-import style from '@/components/ol/style'
 import VectorLayer from 'ol/layer/vector'
+
+import Toolbar from '@/components/control/Toolbar'
+import style from '@/components/ol/style'
 
 const toolbars = function(map, options) {
   const verticalButtons = [

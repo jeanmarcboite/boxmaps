@@ -13,12 +13,15 @@
   </v-navigation-drawer>
 </div>
 </template>
+
 <script>
 import {
   mapGetters,
   mapMutations
 } from 'vuex'
+
 import listTracks from '@/components/ol/listTracks'
+
 export default {
   name: 'Menu',
   props: ['map'],
@@ -51,12 +54,18 @@ export default {
           id: 'tracks',
           title: 'Tracks',
           content: '<ul id="trackList"/>'
+        },
+        {
+          id: 'settings',
+          title: 'Settings',
+          content: '<ul id="settingsList"/>'
         }
       ]
     }
   },
   methods: {
     onInput(isOpen, item) {
+      console.dir(item)
       item.isOpen = isOpen
       if (item.isOpen) {
         listTracks(this.map, this.map, document.getElementById('trackList'))

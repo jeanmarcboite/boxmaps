@@ -42,8 +42,6 @@ export default {
       title: 'Maps',
       direction: 'vertical',
       right: true,
-      drawer: true,
-      miniVariant: false,
       map: undefined,
       controls: []
     }

@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersist from 'vuex-persist'
 import createLogger from 'vuex/dist/logger'
+
 import settings from './modules/settings'
 import layers from './modules/layers'
 import tracks from './modules/tracks'
 import bookmarks from './modules/bookmarks'
-import VuexPersist from 'vuex-persist'
+import ui from './modules/ui'
 
 const vuexStorage = new VuexPersist({
   key: 'maps-vuex', // The key to store the state on in the storage provider.
@@ -33,6 +35,7 @@ const store = new Vuex.Store({
     layers,
     tracks,
     bookmarks,
+    ui,
     settings
   },
   state,
