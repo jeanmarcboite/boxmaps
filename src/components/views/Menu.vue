@@ -15,7 +15,7 @@
       </v-expansion-panel-content>
       <v-expansion-panel-content @input='onTracks($event)'>
         <div slot='header'>Tracks</div>
-        <TrackList :tracks="tracks" :map="map" />
+        <TrackList :tracks="tracks" />
       </v-expansion-panel-content>
     </v-expansion-panel>
     <div class="data "></div>
@@ -24,11 +24,6 @@
 </template>
 
 <script>
-import {
-  mapGetters,
-  mapMutations
-} from 'vuex'
-
 import TrackList from './TrackList.vue'
 import listTracks from '@/ol/utils/listTracks'
 import {
@@ -36,7 +31,6 @@ import {
 } from 'vuex-pathify'
 export default {
   name: 'Menu',
-  props: ['map'],
   computed: {
     ...sync('ui/', ['drawer']),
   },
@@ -74,7 +68,7 @@ export default {
   methods: {
     onTracks(isOpen) {
       if (isOpen) {
-        this.tracks = listTracks(this.map)
+        this.tracks = listTracks(this.$map)
       }
     }
   }

@@ -29,16 +29,11 @@
 
 <script>
 import {
-  mapGetters,
-  mapMutations
-} from 'vuex'
-import {
   sync
 } from 'vuex-pathify'
 
 export default {
   name: 'Export',
-  props: ['map'],
   computed: {
     ...sync('ui/', ['exportDialog'])
   },

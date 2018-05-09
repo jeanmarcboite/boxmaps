@@ -34,7 +34,7 @@ export default class TrackSwitcher extends Control {
     if (typeof (optOptions.displayInLayerSwitcher) === 'function') {
       this.displayInLayerSwitcher = optOptions.displayInLayerSwitcher
     }
-    this.mapListeners = []
+    this.$mapListeners = []
 
     this.hiddenClassName = 'ol-unselectable ol-control track-switcher'
     this.shownClassName = 'shown'
@@ -79,15 +79,15 @@ export default class TrackSwitcher extends Control {
     */
   setMap(map) {
     // Clean up listeners associated with the previous map
-    for (var i = 0, key; i < this.mapListeners.length; i++) {
-      Observable.unByKey(this.mapListeners[i])
+    for (var i = 0, key; i < this.$mapListeners.length; i++) {
+      Observable.unByKey(this.$mapListeners[i])
     }
-    this.mapListeners.length = 0
+    this.$mapListeners.length = 0
     // Wire up listeners etc. and store reference to new map
     super.setMap(map)
     if (map) {
       var this_ = this
-      this.mapListeners.push(map.on('pointerdown', function() {
+      this.$mapListeners.push(map.on('pointerdown', function() {
         this_.hidePanel()
       }))
       this.renderPanel()

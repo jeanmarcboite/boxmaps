@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'TrackList',
-  props: ['map', 'tracks'],
+  props: ['tracks'],
   data() {
     return {}
   },

@@ -1,12 +1,12 @@
 <template>
 <div class="app">
-  <Menu :map="map" />
+  <Menu/>
   <div id="map" class="map" />
   <div style="display: none;">
     <input type="file" id="openFile" accept=".gpx" multiple />
   </div>
   <Export/>
-  <Tracks :map="map" />
+  <Tracks/>
 </div>
 </template>
 
@@ -17,7 +17,6 @@ import View from 'ol/view'
 import Button from 'ol-ext/control/Button'
 import interaction from 'ol/interaction'
 import {
-  mapGetters,
   mapMutations
 } from 'vuex'
 import {
@@ -52,14 +51,9 @@ export default {
       title: 'Maps',
       direction: 'vertical',
       right: true,
-      map: undefined,
       dialog: false,
       sound: false,
       widgets: true,
-      tracks: true,
-      bookmarks: true,
-      layers: false,
-      settings: false,
       controls: []
     }
   },
@@ -75,12 +69,12 @@ export default {
         handleClick: button.handleClick
       })
       newButton.element.classList.add(button.class)
-      this.map.addControl(newButton)
+      this.$map.addControl(newButton)
     }
   },
   mounted: function () {
     const this_ = this
-    this.map = new Map({
+    Vue.prototype.$map = new Map({
       interactions: interaction.defaults().extend([dragAndDropInteraction]),
       layers,
       target: 'map',
@@ -90,21 +84,19 @@ export default {
       })
     })
 
-    Vue.prototype.$map = this.map
-
-    this.map.on('moveend', function (event) {
+    this.$map.on('moveend', function (event) {
       store.commit('settings/setView', {
         zoom: event.map.getView().getZoom(),
         center: event.map.getView().getCenter()
       })
     })
 
-    const [vBar, hBar] = toolbars(this.map, {
+    const [vBar, hBar] = toolbars(this.$map, {
       openId: 'openFile',
       exportId: 'exportButton',
       tracksId: 'tracksButton'
     })
-    addControls(this.map, {
+    addControls(this.$map, {
       hBar,
       store
     })
@@ -120,22 +112,22 @@ export default {
     })
     profile.element.classList.add('ol-profile')
 
-    // this.map.addControl(profile)
+    // this.$map.addControl(profile)
     // New profil outside the map
-    this.map.profil = new Profil({
+    this.$map.profil = new Profil({
       target: 'profil',
       width: 400,
       height: 200
     })
-    // this.map.addControl(this.map.profil)
+    // this.$map.addControl(this.$map.profil)
 
-    addTracks(this.map, this.$store.state.tracks)
+    addTracks(this.$map, this.$store.state.tracks)
 
     // const trackSwitcher = new TrackSwitcher()
-    // this.map.addControl(trackSwitcher)
+    // this.$map.addControl(trackSwitcher)
 
     document.getElementById('openFile').onchange = readFiles({
-      map: this.map,
+      map: this.$map,
       store: this.$store
     })
   }

@@ -27,10 +27,6 @@
 
 <script>
 import {
-  mapGetters,
-  mapMutations
-} from 'vuex'
-import {
   sync
 } from 'vuex-pathify'
 
@@ -39,7 +35,6 @@ import TrackList from './TrackList.vue'
 
 export default {
   name: 'Tracks',
-  props: ['map'],
   components: {
     TrackList
   },
@@ -53,11 +48,11 @@ export default {
   },
   methods: {
     openDialog: function () {
-      this.tracks = listTracks(this.map)
+      this.tracks = listTracks(this.$map)
       this.tracksDialog = true
     },
     itemClick: function (layer) {
-      this.map.getView().fit(layer.extent)
+      this.$map.getView().fit(layer.extent)
       this.tracksDialog = false
     }
   }
