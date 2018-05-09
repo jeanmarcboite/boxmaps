@@ -11,12 +11,6 @@ export default {
   data() {
     return {
       title: 'Vuetify.js',
-      miniVariant: false,
-      clipped: true,
-      items: [{
-        icon: 'bubble_chart',
-        title: 'Inspire'
-      }],
     }
   },
   name: 'App'
