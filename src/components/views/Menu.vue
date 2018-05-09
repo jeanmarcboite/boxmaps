@@ -9,12 +9,16 @@
     </h1>
     <p style="border-bottom:1px solid #999;" v-html='subtitle' />
     <v-expansion-panel>
-      <v-expansion-panel-content v-for='item in menu' :key="item.id" @input='onInput($event, item)'>
-        <div slot='header' v-html='item.title' />
-        <div v-html='item.content' :id='"expansionPanelContent" + item.id' />
+      <v-expansion-panel-content>
+        <div slot='header'>Item 1</div>
+        <div>Lorem</div>
+      </v-expansion-panel-content>
+      <v-expansion-panel-content @input='onTracks($event)'>
+        <div slot='header'>Tracks</div>
+        <TrackList :tracks="tracks" :map="map" />
       </v-expansion-panel-content>
     </v-expansion-panel>
-    <div class="data"></div>
+    <div class="data "></div>
   </v-navigation-drawer>
 </div>
 </template>
@@ -25,7 +29,8 @@ import {
   mapMutations
 } from 'vuex'
 
-import listTracks from '@/ol/listTracksInDOM'
+import TrackList from './TrackList.vue'
+import listTracks from '@/ol/utils/listTracks'
 import {
   sync
 } from 'vuex-pathify'
@@ -35,10 +40,14 @@ export default {
   computed: {
     ...sync('ui/', ['drawer']),
   },
+  components: {
+    TrackList
+  },
   data() {
     return {
       title: 'Menu',
       subtitle: '<i>Menu</i> can be used to display a menu or information on the top of the map.',
+      tracks: [],
       menu: [
         {
           id: 'lorem',
@@ -52,28 +61,20 @@ export default {
         {
           id: 'tracks',
           title: 'Tracks',
-          content: '<ul id="trackList"/>'
+          content: '<TrackList :tracks=tracks/>'
         },
         {
           id: 'settings',
           title: 'Settings',
-          content: '<ul id="settingsList"/>'
+          content: '<ul id="trackList"/>'
         }
       ]
     }
   },
   methods: {
-    onInput(isOpen, item) {
-      item.isOpen = isOpen
-      if (item.isOpen) {
-        switch (item.id) {
-        case 'tracks':
-          listTracks(this.map, this.map, document.getElementById('trackList'))
-          break
-        case 'settings':
-          break
-        default:
-        }
+    onTracks(isOpen) {
+      if (isOpen) {
+        this.tracks = listTracks(this.map)
       }
     }
   }

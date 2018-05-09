@@ -35,10 +35,14 @@ import {
 } from 'vuex-pathify'
 
 import listTracks from '@/ol/utils/listTracks'
+import TrackList from './TrackList.vue'
 
 export default {
   name: 'Tracks',
   props: ['map'],
+  components: {
+    TrackList
+  },
   computed: {
     ...sync('ui/', ['tracksDialog'])
   },
