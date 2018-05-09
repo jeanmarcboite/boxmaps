@@ -18,8 +18,8 @@ export default {
   },
   methods: {
     itemClick: function (layer) {
-      if (this.map) {
-        this.map.getView().fit(layer.extent)
+      if (this.$map) {
+        this.$map.getView().fit(layer.extent)
       }
     }
   }

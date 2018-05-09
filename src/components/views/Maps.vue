@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import Map from 'ol/map'
 import View from 'ol/view'
 import Button from 'ol-ext/control/Button'
@@ -88,6 +89,8 @@ export default {
         zoom: this.zoom
       })
     })
+
+    Vue.prototype.$map = this.map
 
     this.map.on('moveend', function (event) {
       store.commit('settings/setView', {
