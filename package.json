@@ -15,6 +15,7 @@
     "deploy": "npm run build && git add dist && git commit -am dist && git push heroku master"
   },
   "dependencies": {
+    "@mdi/font": "^2.3.54",
     "express": "^4.16.3",
     "font-awesome": "^4.7.0",
     "ol": "^4.6.5",

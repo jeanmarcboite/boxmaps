@@ -14,10 +14,25 @@
         </v-toolbar-items>
       </v-toolbar>
       <v-list>
-        <v-list-tile v-for='item in tracks' :key="item.key" @click="itemClick(item)">
+        <v-list-tile>
+          <v-list-tile-action>
+            <i class="fa fa-home" @click="logClick()"></i>
+          </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title v-text="item.get('title')"></v-list-tile-title>
+            <v-list-tile-title>item.title</v-list-tile-title>
           </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile v-for='item in tracks' :key="item.key" @click="itemClick(item)">
+          <v-list-tile-action>
+            <v-icon @click="logClick()">terrain</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ item.get('title') }}</v-list-tile-title>
+            <v-list-tile-sub-title v-if='item.subtitle'>{{ item.subtitle }}</v-list-tile-sub-title>
+          </v-list-tile-content>
+          <v-list-tile-action>
+            <v-icon @click="chooseColor(item)">palette</v-icon>
+          </v-list-tile-action>
         </v-list-tile>
       </v-list>
     </v-card>
@@ -50,6 +65,12 @@ export default {
     openDialog: function () {
       this.tracks = listTracks(this.$map)
       this.tracksDialog = true
+    },
+    logClick: function () {
+      console.log('click')
+    },
+    chooseColor: function (layer) {
+      console.log('choose track color ' + layer)
     },
     itemClick: function (layer) {
       this.$map.getView().fit(layer.extent)

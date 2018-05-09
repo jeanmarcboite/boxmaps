@@ -16,7 +16,7 @@ Vue.use(Vuetify)
 Vue.config.productionTip = false
 Vue.use(VueSplit)
 sync(store, router)
-Vue.use(feather, 'v-icon')
+// Vue.use(feather, 'v-icon')
 
 /* eslint-disable no-new */
 new Vue({
