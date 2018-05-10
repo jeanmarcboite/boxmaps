@@ -21,7 +21,7 @@
     "ol": "^4.6.5",
     "ol-ext": "^2.0.2",
     "vue": "^2.5.2",
-    "vue-icon": "^2.0.0",
+    "vue-color": "^2.4.6",
     "vue-material": "^1.0.0-beta-7",
     "vue-router": "^3.0.1",
     "vue-split-panel": "^1.0.4",

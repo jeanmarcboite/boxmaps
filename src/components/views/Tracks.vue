@@ -26,6 +26,7 @@
           <v-list-tile-action>
             <v-icon @click="logClick()">terrain</v-icon>
           </v-list-tile-action>
+          <ColorPicker :color="item.color"></ColorPicker>
           <v-list-tile-content>
             <v-list-tile-title>{{ item.get('title') }}</v-list-tile-title>
             <v-list-tile-sub-title v-if='item.subtitle'>{{ item.subtitle }}</v-list-tile-sub-title>
@@ -47,11 +48,12 @@ import {
 
 import listTracks from '@/ol/utils/listTracks'
 import TrackList from './TrackList.vue'
-
+import ColorPicker from './ColorPicker.vue'
 export default {
   name: 'Tracks',
   components: {
-    TrackList
+    TrackList,
+    ColorPicker
   },
   computed: {
     ...sync('ui/', ['tracksDialog'])
@@ -59,6 +61,30 @@ export default {
   data() {
     return {
       tracks: [],
+      item: {
+        color: {
+          hex: '#194d33',
+          hsl: {
+            h: 150,
+            s: 0.5,
+            l: 0.2,
+            a: 1
+          },
+          hsv: {
+            h: 150,
+            s: 0.66,
+            v: 0.30,
+            a: 1
+          },
+          rgba: {
+            r: 25,
+            g: 77,
+            b: 51,
+            a: 1
+          },
+          a: 1
+        }
+      }
     }
   },
   methods: {

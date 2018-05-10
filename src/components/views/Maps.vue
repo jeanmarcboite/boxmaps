@@ -49,28 +49,10 @@ export default {
   data() {
     return {
       title: 'Maps',
-      direction: 'vertical',
-      right: true,
-      dialog: false,
-      sound: false,
-      widgets: true,
-      controls: []
     }
   },
   computed: {
     ...sync('settings', ['zoom', 'center'])
-  },
-  methods: {
-    ...mapMutations(['addTrack']),
-    addButton: function (button) {
-      const newButton = new Button({
-        html: button.html,
-        title: button.title,
-        handleClick: button.handleClick
-      })
-      newButton.element.classList.add(button.class)
-      this.$map.addControl(newButton)
-    }
   },
   mounted: function () {
     const this_ = this

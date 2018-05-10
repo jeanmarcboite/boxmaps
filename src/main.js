@@ -9,14 +9,12 @@ import { sync } from 'vuex-router-sync'
 
 import store from '@/store'
 import VueSplit from 'vue-split-panel'
-import feather from 'vue-icon'
 
 Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 Vue.use(VueSplit)
 sync(store, router)
-// Vue.use(feather, 'v-icon')
 
 /* eslint-disable no-new */
 new Vue({
