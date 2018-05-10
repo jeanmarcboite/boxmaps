@@ -4,6 +4,10 @@ import Style from 'ol/style/style'
 import RegularShape from 'ol/style/regularshape'
 import CircleStyle from 'ol/style/circle'
 
+import store from '@/store'
+
+const defaultColor = store.getters['settings/defaultColor']
+
 export const profileStyle = [
   new Style({
     image: new RegularShape({
@@ -52,7 +56,7 @@ export const defaultStyle = {
     })
   }),
   'MultiLineString': new Style({
-    stroke: new Stroke({color: '#f00', width: 3})
+    stroke: new Stroke({color: defaultColor, width: 3})
   }),
   'MultiPolygon': new Style({
     fill: new Fill({color: 'rgba(0,0,255,0.5)'}),
