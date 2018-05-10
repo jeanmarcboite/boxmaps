@@ -10,6 +10,7 @@ export function TrackLayer (optOptions) {
 
   VectorLayer.call(this, options)
 
+  this.color = '#000000'
   this.extent = options.source.getExtent().slice()
 };
 

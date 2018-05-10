@@ -52,7 +52,7 @@ export const defaultStyle = {
     })
   }),
   'MultiLineString': new Style({
-    stroke: new Stroke({color: '#00f', width: 3})
+    stroke: new Stroke({color: '#f00', width: 3})
   }),
   'MultiPolygon': new Style({
     fill: new Fill({color: 'rgba(0,0,255,0.5)'}),

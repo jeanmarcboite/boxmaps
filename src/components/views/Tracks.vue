@@ -13,29 +13,7 @@
           <v-btn dark flat @click.native="tracksDialog = false">Close</v-btn>
         </v-toolbar-items>
       </v-toolbar>
-      <v-list>
-        <v-list-tile>
-          <v-list-tile-action>
-            <i class="fa fa-home" @click="logClick()"></i>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>item.title</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile v-for='item in tracks' :key="item.key" @click="itemClick(item)">
-          <v-list-tile-action>
-            <v-icon @click="logClick()">terrain</v-icon>
-          </v-list-tile-action>
-          <ColorPicker :color="item.color"></ColorPicker>
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item.get('title') }}</v-list-tile-title>
-            <v-list-tile-sub-title v-if='item.subtitle'>{{ item.subtitle }}</v-list-tile-sub-title>
-          </v-list-tile-content>
-          <v-list-tile-action>
-            <v-icon @click="chooseColor(item)">palette</v-icon>
-          </v-list-tile-action>
-        </v-list-tile>
-      </v-list>
+      <TrackList :tracks="tracks" />
     </v-card>
   </v-dialog>
 </div>
@@ -47,13 +25,12 @@ import {
 } from 'vuex-pathify'
 
 import listTracks from '@/ol/utils/listTracks'
-import TrackList from './TrackList.vue'
+import TrackList from './BTrack.vue'
 import ColorPicker from './ColorPicker.vue'
 export default {
   name: 'Tracks',
   components: {
     TrackList,
-    ColorPicker
   },
   computed: {
     ...sync('ui/', ['tracksDialog'])

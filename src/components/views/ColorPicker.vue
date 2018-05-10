@@ -1,6 +1,6 @@
 <template>
 <div class="input-group color-picker" ref="colorpicker">
-  <span class="current-color" :style="'background-color: ' + colorValue" @click.stop="dialog = true"></span>
+  <span class="current-color" :style="'background-color: ' + object.color" @click.stop="openDialog()"></span>
   <v-dialog v-model="dialog">
     <Picker :value="colors" @input="updateColor" />
   </v-dialog>
@@ -16,20 +16,28 @@ export default {
   components: {
     Picker
   },
-  props: ['color'],
+  props: {
+    object: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
       colors: {
         hex: '#000000',
       },
-      colorValue: '',
       dialog: false,
     }
   },
   mounted() {
-    this.updateColors(this.color || '#000000')
+    this.updateColors(this.object.color || '#000000')
   },
   methods: {
+    openDialog() {
+      this.$emit('trackselected')
+      this.dialog = true
+    },
     updateColors(color) {
       if (color.slice(0, 1) === '#') {
         this.colors = {
@@ -43,7 +51,7 @@ export default {
           a: rgba[3],
         }
       }
-      this.colorValue = color
+      this.$emit('colorupdated', color)
     },
     updateColor(color) {
       console.log('update color: ' + color)
