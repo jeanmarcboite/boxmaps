@@ -54,7 +54,6 @@ export default {
       this.$emit('colorupdated', color)
     },
     updateColor(color) {
-      console.log('update color: ' + color)
       this.colors = color
       if (color.rgba.a === 1) {
         this.updateColors(color.hex)
