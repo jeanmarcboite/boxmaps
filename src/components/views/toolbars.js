@@ -44,14 +44,14 @@ const toolbars = function(map, options) {
   const hBar = new Toolbar({buttons, toggleButtons})
   hBar.setVisible(false)
   map.addControl(hBar)
-
+  /*
   map.addLayer(new VectorLayer({
     title: 'draw line',
     displayInLayerSwitcher: false,
     source,
     style
   }))
-
+  */
   return [vBar, hBar]
 }
 export default toolbars
